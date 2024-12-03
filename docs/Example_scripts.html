@@ -247,7 +247,7 @@ window.Quarto = {
 <h3 data-number="2.1" class="anchored" data-anchor-id="build-a-spherical-isolated-cloud"><span class="header-section-number">2.1</span> Build a spherical isolated cloud</h3>
 <p>Let’s take an example with a specific set of the physical parameters as in the ‘input_template.dustpol’.</p>
 <p>The gas volume density is followed <span class="math display">\[\begin{equation}
-    n_{\rm gas} = n0 ~~~{\rm for}~~~ r&lt;r_{\rm flat}, ~~~{\rm while}~~~ n_{\rm gas}=n0\times \left(\frac{r_{\rm flat}}{r}\right)^{-\alpha}
+    n_{\rm gas} = n0 ~~~{\rm for}~~~ r&lt;r_{\rm flat}, ~~~{\rm while}~~~ n_{\rm gas}=n0\times \left(\frac{r_{\rm flat}}{r}\right)^{-p}
 \end{equation}\]</span></p>
 <p>The gas column density (<span class="math inline">\(N_{\rm gas}\)</span>) integrated from the center to the position <span class="math inline">\(r\)</span> in the envelope along the radial distance, and the corresponding visual extinction (<span class="math inline">\(A^{\rm outward}_{V}\)</span>) are <span class="math display">\[\begin{equation}
     \begin{split}
@@ -259,8 +259,8 @@ window.Quarto = {
     A^{\rm ext}_{\rm V} &amp;= A^{\rm outward}_{\rm V}(r\gg r_{\rm flat}) - A^{\rm outward}_{\rm V}(r) \\
     &amp;= 10.3\left(\frac{n_{0}}{10^{8}\,\rm cm^{-3}}\right)\left(\frac{r_{\rm flat}}{10\,\rm au}\right)\left(\frac{R_{\rm V}}{4}\right) \times \left\{
     \begin{array}{l l}
-        \left(\frac{\alpha}{\alpha-1} - \frac{r}{r_{\rm flat}}\right) &amp; \quad {\rm ~for~} r\le r_{\rm flat},\\
-        \frac{1}{\alpha-1}\left(\frac{r}{r_{\rm flat}}\right)^{1-\alpha} &amp; \quad {\rm ~for~} r&gt;r_{\rm flat},
+        \left(\frac{p}{p-1} - \frac{r}{r_{\rm flat}}\right) &amp; \quad {\rm ~for~} r\le r_{\rm flat},\\
+        \frac{1}{p-1}\left(\frac{r}{r_{\rm flat}}\right)^{1-p} &amp; \quad {\rm ~for~} r&gt;r_{\rm flat},
     \end{array}\right.
     \end{split}
 \end{equation}\]</span> It is worth noticing that this visual extinction differs from the line of sight <span class="math inline">\(A_{\rm V}\)</span>.</p>
@@ -276,7 +276,7 @@ window.Quarto = {
 </section>
 <section id="parameter-adjustments" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="parameter-adjustments"><span class="header-section-number">2.2</span> Parameter adjustments</h3>
-<p>To profile this cloud, there are four main input physical parameters that must be corrected: <code>n0, rflat,rout and $\alpha$</code>. To make a proper adjustment, we follows these steps</p>
+<p>To profile this cloud, there are four main input physical parameters that must be corrected: <code>n0, rflat,rout and p</code>. To make a proper adjustment, we follows these steps</p>
 <pre><code>-- we vary these parameters from the input file
 -- compute for the visual extinction or gas colume density
 -- compare to observations (if available)</code></pre>
