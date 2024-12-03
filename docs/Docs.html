@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>docs – DustPOL-website</title>
+<title>Fundamental of DustPOL-py – DustPOL-website</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -96,6 +125,35 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./Docs.html" aria-current="page"> 
 <span class="menu-text">Docs</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Tutorials.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Example_scripts.html"> 
+<span class="menu-text">Examples/scripts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Applications.html"> 
+<span class="menu-text">Applications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://dustpol-py.streamlit.app" target="_blank"> <i class="bi bi-fas fa-external-link-alt" role="img">
+</i> 
+<span class="menu-text">Web-interface</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/lengoctram/DustPOL-py"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text">Source code</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/lengoctram/DustPOL-py"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text">GitHub</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -104,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -112,20 +170,244 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-dustpol-py" id="toc-what-is-dustpol-py" class="nav-link active" data-scroll-target="#what-is-dustpol-py">What is DustPOL-py</a></li>
+  <li><a href="#radiative-torques-alignment-rat-a" id="toc-radiative-torques-alignment-rat-a" class="nav-link active" data-scroll-target="#radiative-torques-alignment-rat-a"><span class="header-section-number">1</span> Radiative Torques Alignment (RAT-A)</a>
+  <ul class="collapse">
+  <li><a href="#characterization-of-radiation-field" id="toc-characterization-of-radiation-field" class="nav-link" data-scroll-target="#characterization-of-radiation-field"><span class="header-section-number">1.1</span> Characterization of Radiation Field</a></li>
+  <li><a href="#radiative-torque" id="toc-radiative-torque" class="nav-link" data-scroll-target="#radiative-torque"><span class="header-section-number">1.2</span> Radiative Torque</a></li>
+  <li><a href="#angular-velocity-and-grain-alignment-size" id="toc-angular-velocity-and-grain-alignment-size" class="nav-link" data-scroll-target="#angular-velocity-and-grain-alignment-size"><span class="header-section-number">1.3</span> Angular Velocity and Grain Alignment Size</a></li>
+  <li><a href="#alignment-function" id="toc-alignment-function" class="nav-link" data-scroll-target="#alignment-function"><span class="header-section-number">1.4</span> Alignment function</a></li>
+  </ul></li>
+  <li><a href="#radiative-torque-disruption-rat-d" id="toc-radiative-torque-disruption-rat-d" class="nav-link" data-scroll-target="#radiative-torque-disruption-rat-d"><span class="header-section-number">2</span> Radiative Torque Disruption (RAT-D)</a></li>
+  <li><a href="#grain-size-distribution" id="toc-grain-size-distribution" class="nav-link" data-scroll-target="#grain-size-distribution"><span class="header-section-number">3</span> Grain-size distribution</a>
+  <ul class="collapse">
+  <li><a href="#mrn-like-distribution" id="toc-mrn-like-distribution" class="nav-link" data-scroll-target="#mrn-like-distribution"><span class="header-section-number">3.1</span> MRN-like distribution</a></li>
+  <li><a href="#others" id="toc-others" class="nav-link" data-scroll-target="#others"><span class="header-section-number">3.2</span> Others</a></li>
+  </ul></li>
+  <li><a href="#degree-of-dust-polarisation" id="toc-degree-of-dust-polarisation" class="nav-link" data-scroll-target="#degree-of-dust-polarisation"><span class="header-section-number">4</span> Degree of Dust Polarisation</a>
+  <ul class="collapse">
+  <li><a href="#starlight-polarisation" id="toc-starlight-polarisation" class="nav-link" data-scroll-target="#starlight-polarisation"><span class="header-section-number">4.1</span> Starlight Polarisation</a></li>
+  <li><a href="#thermal-dust-polarisation" id="toc-thermal-dust-polarisation" class="nav-link" data-scroll-target="#thermal-dust-polarisation"><span class="header-section-number">4.2</span> Thermal Dust Polarisation</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Fundamental of DustPOL-py</h1>
+</div>
 
 
 
+<div class="quarto-title-meta column-page-left">
 
-<section id="what-is-dustpol-py" class="level1">
-<h1>What is DustPOL-py</h1>
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="radiative-torques-alignment-rat-a" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="radiative-torques-alignment-rat-a"><span class="header-section-number">1</span> Radiative Torques Alignment (RAT-A)</h2>
+<p>The physics of grain alignment by radiative torques is described in detail in numerous works. In this section, we recall the principles of this theory and formulations for our model. For more details, we refer to the most recent reviews in <a href="https://ui.adsabs.harvard.edu/abs/2015ARA%26A..53..501A/abstract">Andersson et al.&nbsp;2015</a> and <a href="https://ui.adsabs.harvard.edu/abs/2022FrASS...9.3927T/abstract">Tram &amp; Hoang 2022</a>, and studies in <a href="https://ui.adsabs.harvard.edu/abs/2021ApJ...908...12L/abstract">Lazarian &amp; Hoang 2021</a> and <a href="https://ui.adsabs.harvard.edu/abs/2022AJ....164..248H/abstract">Hoang et al.&nbsp;2022</a>.</p>
+<section id="characterization-of-radiation-field" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="characterization-of-radiation-field"><span class="header-section-number">1.1</span> Characterization of Radiation Field</h3>
+<p>A radiation field is characterized by the following three physical paramters: the radiation spectrum of <span class="math inline">\(u_{\lambda}\)</span>, the mean wavelength of <span class="math inline">\(\bar{\lambda}\)</span> and an anisotropy degree of <span class="math inline">\(\gamma\)</span>.</p>
+<section id="the-radiation-strength" class="level4" data-number="1.1.1">
+<h4 data-number="1.1.1" class="anchored" data-anchor-id="the-radiation-strength"><span class="header-section-number">1.1.1</span> The radiation strength</h4>
+<p>The strength is defined by a dimensionless <!-- \begin{equation} --> <span class="math display">\[
+  U=\frac{\int_{0.091\,\mu m}^{20\,\mu m} u_{\lambda}d\lambda}{u_{\rm ISRF}}, \label{eq:test}
+\]</span> <!-- \end{equation} --> where <span class="math inline">\(u_{\rm ISRF}=8.64\times 10^{-13}\,\rm erg\,cm^{-3}\)</span> is the radiation energy density of the interstellar radiation field (ISRF) in the solar neighborhood. For a typical interstellar radiation field, <span class="math inline">\(U=1\)</span>.</p>
+</section>
+<section id="the-mean-wavelength" class="level4" data-number="1.1.2">
+<h4 data-number="1.1.2" class="anchored" data-anchor-id="the-mean-wavelength"><span class="header-section-number">1.1.2</span> The mean wavelength</h4>
+<p>The mean wavelength of this radiation is defined as <span class="math display">\[\begin{equation}
+  \bar{\lambda}=\frac{\int_{0.091\,\mu m}^{20\,\mu m}\lambda u_{\lambda}d\lambda}{\int_{0.091\,\mu m}^{20\,\mu m}u_{\lambda}d\lambda}
+\end{equation}\]</span> with <span class="math inline">\(\bar{\lambda}=1.3\,\mu\)</span>m for a typical interstellar radiation field.</p>
+</section>
+<section id="the-anisotropic-degree" class="level4" data-number="1.1.3">
+<h4 data-number="1.1.3" class="anchored" data-anchor-id="the-anisotropic-degree"><span class="header-section-number">1.1.3</span> The anisotropic degree</h4>
+<p>In general, the anisotropic degree of a radiation field falls within <span class="math inline">\(0&lt;\gamma\leq 1\)</span>. For a typical interstellar radiation field, <span class="math inline">\(\gamma \simeq 0.1\)</span>, where <span class="math inline">\(\gamma \simeq 0.3\)</span> in dense core and <span class="math inline">\(\gamma \simeq 1\)</span> in star-forming regions.</p>
+</section>
+</section>
+<section id="radiative-torque" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="radiative-torque"><span class="header-section-number">1.2</span> Radiative Torque</h3>
+<p>The average radiative torque induced by the interaction of an irregular grain (with an effective size <span class="math inline">\(a\)</span>), and an anisotropic radiation field (with an isotropic degree of <span class="math inline">\(\gamma\)</span>) is <span class="math display">\[\begin{equation}
+    \bar{\Gamma}_{\rm RAT} = \pi a^{2} \gamma (8.64\times 10^{-13} U)\left(\frac{\bar{\lambda}}{2\pi}\right)\bar{Q}_{\Gamma}
+\end{equation}\]</span> where <span class="math inline">\(\bar{Q}_{\Gamma}\)</span> is the RAT efficiency, which is <span class="math display">\[\begin{equation}
+    \bar{Q}_{\Gamma}=\left\{
+    \begin{array}{l l}
+        2\left(\frac{\bar{\lambda}}{a}\right)^{-2.7}   &amp; \quad \text{for } a\leq \frac{\bar{\lambda}}{1.8},\\
+        0.4  &amp; \quad \text{for } a&gt;\frac{\bar{\lambda}}{1.8}
+    \end{array}\right.
+\end{equation}\]</span></p>
+</section>
+<section id="angular-velocity-and-grain-alignment-size" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="angular-velocity-and-grain-alignment-size"><span class="header-section-number">1.3</span> Angular Velocity and Grain Alignment Size</h3>
+<p>The RAT accelerates the irregular grain to a finite angular velocity (<span class="math inline">\(\omega_{\rm RAT}\)</span>). For a given RAT, this rotation is faster for a lower initial momentum (<span class="math inline">\(I_{a}\)</span>), and experiences deceleration due to gas collisions and reemission from the grain, characterised by the damping timescale (<span class="math inline">\(\tau_{\rm damp}\)</span>). The maximum angular velocity with which an irregular grain is gained by RAT is <span class="math display">\[\begin{equation}
+    \omega_{\rm RAT} = \frac{\bar{\Gamma}_{\rm RAT}\tau_{\rm damp}}{I_{a}}
+\end{equation}\]</span> The initial momentum of a grain of size <span class="math inline">\(a\)</span> is <span class="math inline">\(I_{a}=8\pi\rho a^{5}/15\)</span> with <span class="math inline">\(\rho\)</span> is the mass density. The damping time scale is <span class="math display">\[\begin{equation}
+    \begin{split}
+        \tau_{\rm damp} \simeq 8.3\times 10^{3}&amp;\left(\frac{a}{0.1\,\rm \mu m}\right)\left(\frac{\rho}{3\,\rm g\,cm^{-3}}\right) \\
+        &amp;\times \left(\frac{10^{3}\,\rm cm^{-3}}{n_{\rm gas}}\right)\left(\frac{10\,\rm K}{T_{\rm gas}}\right)^{1/2} \left(\frac{1}{1+F_{\rm IR}}\right) ~~~ {(\rm yr)}
+    \end{split}
+\end{equation}\]</span> with <span class="math inline">\(F_{\rm IR}\)</span> is the ratio in timescale between the gas collision and the re-emission damping, which approximates <span class="math display">\[\begin{equation}
+    F_{\rm IR} = 0.038\times U^{2/3}\left(\frac{0.1\,\rm \mu m}{a}\right)\left(\frac{10^{3}\,\rm cm^{-3}}{n_{\rm gas}}\right)\left(\frac{10\,\rm K}{T_{\rm gas}}\right)^{1/2}
+\end{equation}\]</span></p>
+<p>The alignment of the grain is withstand if its angular velocity is three times higher than the thermal angular velocity (<span class="math inline">\((k_{\rm B}T_{\rm gas}/I_{a})^{1/2}\)</span>). Therefore, the minimum grain size that is aligned (referred to as the alignment size <span class="math inline">\(a_{\rm align}\)</span>) is the solution of the relation <span class="math display">\[\begin{equation}
+    \omega_{\rm RAT}(a_{\rm align}) = 3\times \left(\frac{15k_{\rm B}T_{\rm gas}}{8\pi \rho a_{\rm align}^{5}}\right)^{1/2}
+\end{equation}\]</span></p>
+</section>
+<section id="alignment-function" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="alignment-function"><span class="header-section-number">1.4</span> Alignment function</h3>
+<p>Dust grain alignment can be characterised by two separate mechanisms: internal alignment (where the grain’s minor axis aligns with its angular momentum) and external alignment (where the angular momentum aligns with a preferred axis, which could be the ambient magnetic field, radiation field, gas flow).</p>
+<p>The efficiency of internal alignment is qualitatively characterised by <span class="math inline">\(Q_{\rm X}\)</span>, while it is <span class="math inline">\(Q_{J}\)</span> for external alignment. The net grain alignment is called the Rayleigh reduction factor of <span class="math inline">\(R(a)=\langle Q_{X}Q_{J}\rangle \simeq f_{\rm high-J}\)</span>. The alignment efficiency will change from 0 to <span class="math inline">\(f_{\rm high-J}\)</span> for grain size from smaller to larger than <span class="math inline">\(a_{\rm align}\)</span>. As this transition is a step-function and differs from the smooth change seen from numerical models, a smooth transition will be <span class="math display">\[\begin{equation}
+    f(a) = f_{\rm max}\left[1-e^{-(0.5a/a_{\rm align})^{3}} \right]
+\end{equation}\]</span> this is called the alignment function with <span class="math inline">\(f_{\rm max}=1\)</span> for perfect alignment.</p>
+</section>
+</section>
+<section id="radiative-torque-disruption-rat-d" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="radiative-torque-disruption-rat-d"><span class="header-section-number">2</span> Radiative Torque Disruption (RAT-D)</h2>
+<p>A grain rotating at rotational velocity <span class="math inline">\(\omega\)</span> results in tensile stress <span class="math inline">\(S=\rho \omega^{2}a^{2}/4\)</span> on the materials making up the grain. Thus, the maximum rotational velocity that a grain can withstand is: <span class="math display">\[\begin{equation} \label{eq:omega_crit}
+    \omega_{\rm crit} = \frac{2}{a}\left(\frac{S_{\rm max}}{\rho}\right)^{1/2} \simeq \frac{3.6\times 10^{8}}{a_{-5}}S^{1/2}_{\rm max,7}\hat{\rho}^{-1/2},
+\end{equation}\]</span> where <span class="math inline">\(S_{\rm max,7}=S_{\rm max}/(10^{7} \rm erg\,cm^{-3})\)</span>.</p>
+<p>One can see from Equation of <span class="math inline">\(\Omega_{\rm RAT}\)</span> that the stronger the radiation field and the larger the grain size, the faster the rotation of the grain. A strong radiation field can thus generate such a fast rotation that the induced stress on large grains can result in a spontaneous disruption. This disruption mechanism is named as RAT-D. From <span class="math inline">\(\Omega_{\rm RAT}\)</span> and <span class="math inline">\(\Omega_{\rm crit}\)</span>, we can derive the critical size above which grains are disrupted as <span class="math display">\[\begin{equation}
+    \left(\frac{a_{\rm disr}}{0.1\,\rm \mu m}\right)^{2.7} \simeq 5.1\gamma^{-1}_{0.1}U^{-1/3}\bar{\lambda}^{1.7}_{0.5}S^{1/2}_{\rm max,7},
+\end{equation}\]</span> where <span class="math inline">\(\bar{\lambda}_{0.5} = \bar{\lambda}/(0.5\,\mu \rm m)\)</span>.</p>
+</section>
+<section id="grain-size-distribution" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="grain-size-distribution"><span class="header-section-number">3</span> Grain-size distribution</h2>
+<p>Dust grains are disrupted efficiently (for <span class="math inline">\(a\)</span> greater than <span class="math inline">\(a_{\rm disr}\)</span>) in stronger radiation fields. The disruption of dust grain by RATD can modify the grain-size distribution. Since only the largest grains are affected by the RATD mechanism, RATD determines the upper limit of the size distribution. The disruption is thus expected to enhance more smaller grains, resulting in a steeper grain size distribution than in the standard ISM.</p>
+<section id="mrn-like-distribution" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="mrn-like-distribution"><span class="header-section-number">3.1</span> MRN-like distribution</h3>
+<p>A power-law grain size distribution assumption for both the original large grains and the smaller grains produced by disruption, with a power-law index <span class="math inline">\(\beta\)</span> as <span class="math display">\[\begin{equation}
+    \frac{1}{n_{\rm H}}\frac{dn_{\rm sil,car}}{da}=Ca^{\beta} \ \ \ \rm{(a_{\rm min}\leq a \leq a_{\rm max})},
+\end{equation}\]</span> where <span class="math inline">\(C\)</span> is the normalization constants. This value is distinc for different grain compositions, and is determined through the dust-to-gas mass ratio <span class="math inline">\(M_{\rm d/g}\)</span>.</p>
+<section id="mixture-composition" class="level4" data-number="3.1.1">
+<h4 data-number="3.1.1" class="anchored" data-anchor-id="mixture-composition"><span class="header-section-number">3.1.1</span> Mixture composition</h4>
+<p>If we consider a combination of silicate and carbonaceous grain, we have <span class="math display">\[\begin{equation}
+  \begin{split}
+    \sum_{\rm j=sil,car} C_{j}\rho_{j} &amp;= \frac{(4+\beta)M_{\rm d/g} m_{\rm gas}}{\frac{4}{3}\pi (a^{4+\beta}_{\rm max}-a^{4+\beta}_{\rm min})} ~~~~~~~\rm{for\ \beta \neq -4} \\
+    \sum_{\rm j=sil,car} C_{j}\rho_{j} &amp;= \frac{M_{\rm d/g}m_{\rm gas}}{\frac{4}{3}\pi(\ln a_{\rm max} - \ln a_{\rm min})} ~~~\rm{for\ \beta = -4}.
+\end{split}
+\end{equation}\]</span> where <span class="math inline">\(C_{\rm sil}/C_{\rm car}\)</span> is adopted as 1.12, and <span class="math inline">\(M_{\rm d/g}\)</span> is the dust-to-mass ratio (0.01 for standard ISM).</p>
+</section>
+<section id="single-composition" class="level4" data-number="3.1.2">
+<h4 data-number="3.1.2" class="anchored" data-anchor-id="single-composition"><span class="header-section-number">3.1.2</span> Single composition</h4>
+<p>For the single silicate or Astrodust, the size distribution is simply as <span class="math display">\[\begin{equation}
+  \begin{split}
+    C\rho_{\rm dust} &amp;= \frac{(4+\beta)M_{\rm d/g} m_{\rm gas}}{\frac{4}{3}\pi (a^{4+\beta}_{\rm max}-a^{4+\beta}_{\rm min})} ~~~~~~~\rm{for\ \beta \neq -4} \\
+    C\rho_{\rm dust} &amp;= \frac{M_{\rm d/g}m_{\rm gas}}{\frac{4}{3}\pi(\ln a_{\rm max} - \ln a_{\rm min})} ~~~\rm{for\ \beta = -4}.
+\end{split}
+\end{equation}\]</span></p>
+</section>
+</section>
+<section id="others" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="others"><span class="header-section-number">3.2</span> Others</h3>
+<section id="weingartner-and-draine-wd01" class="level4" data-number="3.2.1">
+<h4 data-number="3.2.1" class="anchored" data-anchor-id="weingartner-and-draine-wd01"><span class="header-section-number">3.2.1</span> Weingartner and Draine (WD01)</h4>
+<p>The size distribution comprises of 2 components: log-normal and non log-normal. Please have a look at <a href="https://ui.adsabs.harvard.edu/abs/2001ApJ...548..296W/abstract">Weingartner &amp; Draine 2001</a> for more details.</p>
+<p>For the single carbonaceous grain (parameters denoted by <span class="math inline">\(g\)</span>) <span class="math display">\[\begin{equation}
+  \frac{dn}{da}=\sum_{j=1}^{2}\frac{n_{0j}}{a}\exp{ \left(-\frac{[\ln(a/a_{0j})]^{2}}{2\sigma^{2}_{j}}\right) }   + \frac{C_{g}}{a}\left(\frac{a}{a_{t,g}}\right)^{\alpha_{g}} F(\alpha;\beta_{g},a_{t,g}) \times
+\left\{
+    \begin{array}{l l}
+        1 &amp; \quad \text{for } 3.5Å&lt;a&lt;a_{t,g},\\
+        \exp{\left[-[(a-a_{t,g}/a_{c,g})]^{3}\right] }  &amp; \quad \text{for } a&gt;a_{t,g}
+    \end{array}\right.
+\end{equation}\]</span> with <span class="math inline">\(n_{0,1}=2.0496e-7\)</span> and <span class="math inline">\(n_{0,2}= 9.6005e-11\)</span>.</p>
+<p>For the silicate grain (parameters denoted by <span class="math inline">\(s\)</span>) <span class="math display">\[\begin{equation}
+  \frac{dn}{da}=\frac{C_{s}}{a}\left(\frac{a}{a_{t,s}}\right)^{\alpha_{s}} F(\alpha;\beta_{s},a_{t,s}) \times
+\left\{
+    \begin{array}{l l}
+        1 &amp; \quad \text{for } 3.5Å&lt;a&lt;a_{t,s},\\
+        \exp{\left[-[(a-a_{t,s}/a_{c,s})]^{3}\right] }  &amp; \quad \text{for } a&gt;a_{t,s}
+    \end{array}\right.
+\end{equation}\]</span></p>
+<p>The curvature of the non log-normal component is given as <span class="math display">\[\begin{equation}
+  F(\alpha;\beta, a_{t}) = \left\{
+    \begin{array}{l l}
+        1 + \beta a/a_{t} &amp; \quad \text{for } \beta&gt;0,\\
+        (1-\beta a/a_{t})^{-1}  &amp; \quad \text{for } \beta&lt;0
+    \end{array}\right.
+\end{equation}\]</span></p>
+<p>Once see that there are 5 adjustable parameters (<span class="math inline">\(C_{g}\)</span>, <span class="math inline">\(a_{t,g}\)</span>, <span class="math inline">\(a_{c,g}\)</span>, <span class="math inline">\(\alpha_{g}\)</span>, <span class="math inline">\(\beta_{g}\)</span>) for the grain size distribution of carbonaceous grain, while there are 5 parameters (<span class="math inline">\(C_{s}\)</span>, <span class="math inline">\(a_{t,s}\)</span>, <span class="math inline">\(a_{c,s}\)</span>, <span class="math inline">\(\alpha_{s}\)</span>, <span class="math inline">\(\beta_{s}\)</span>) for silicate grains. For the best values, please see Table 1 in <a href="https://ui.adsabs.harvard.edu/abs/2001ApJ...548..296W/abstract">Weingartner &amp; Draine 2001</a>.</p>
+</section>
+<section id="draine-and-li-dl07" class="level4" data-number="3.2.2">
+<h4 data-number="3.2.2" class="anchored" data-anchor-id="draine-and-li-dl07"><span class="header-section-number">3.2.2</span> Draine and Li (DL07)</h4>
+<p>The form of the grain size distribution is similar to the WD, but with the correction for the log-normal component. See <a href="https://ui.adsabs.harvard.edu/abs/2007ApJ...657..810D/abstract">Draine &amp; Li 2007</a> for more information.</p>
+<p>In principle, the differents or the carbonaceous, <span class="math display">\[\begin{equation}
+  n_{0j} = \frac{3}{(2\pi)^{3/2}}\frac{\exp(4.5\sigma^{2}_{j})}{1+\erf(x_{j})}\frac{m_{C}}{\rho_{C}a^{3}_{Mj}\sigma_{j}}b_{j} ~~~{\rm with}~~~ x_{j}=\frac{\ln(a_{\rm peak,j}/a_{\rm min})}{\sqrt{2}\sigma_{j}}
+\end{equation}\]</span> where <span class="math inline">\(\rho_{C}\)</span> is the carbon mass density, <span class="math inline">\(b_{C}\)</span> is the total C abundance (per H nucleus) in the log-normal populations, <span class="math inline">\(m_{C}\)</span> is the mass of a carbon atom, and <span class="math inline">\(a_{\rm peak,j} \equiv a_{0j}\exp(3\sigma^{2}_{j})\)</span> is the location of the peak in the mass distribution (<span class="math inline">\(\approx a^{3}dn/dlna\)</span>).</p>
+</section>
+<section id="astrodust-hd23" class="level4" data-number="3.2.3">
+<h4 data-number="3.2.3" class="anchored" data-anchor-id="astrodust-hd23"><span class="header-section-number">3.2.3</span> Astrodust (HD23)</h4>
+<p>The log-normal and non-log normal components for the Astrodust are <span class="math display">\[\begin{equation}
+  \frac{dn}{da} = \frac{B_{\rm Ad}}{a}\exp\left(-\frac{[\ln(a/a_{0,\rm Ad})]^{2}}{2\sigma^{2}_{\rm Ad}}\right) + \frac{A_{0}}{a}\exp\left(\sum_{i=1}^{5}A_{i}\left[\ln\left(\frac{a}{Å}\right)\right]^{i}\right)
+\end{equation}\]</span> where the parameters are given in Table 1 in <a href="https://ui.adsabs.harvard.edu/abs/2023ApJ...948...55H/abstract">Hensley &amp; Draine 2023</a>.</p>
+</section>
+</section>
+</section>
+<section id="degree-of-dust-polarisation" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="degree-of-dust-polarisation"><span class="header-section-number">4</span> Degree of Dust Polarisation</h2>
+<p>In this model, we assume that dust grains are completely aligned with uniform magnetic field, and the emission is optically thin.</p>
+<section id="starlight-polarisation" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="starlight-polarisation"><span class="header-section-number">4.1</span> Starlight Polarisation</h3>
+<p>The degree of polarisation of starlight polarisation for a population of dust, along a certain line of sight, is <span class="math display">\[\begin{equation}
+    p_{\rm ext} = 100\times \int_{s} n_{\rm H}ds \left(\int^{a_{\rm max}}_{a_{\rm min}}\frac{1}{2}\pi a^{2}Q^{\rm pol}_{\rm ext}f(a)\frac{1}{n_{\rm H}}\frac{dn}{da}da\right) ~~~\%
+\end{equation}\]</span> where <span class="math inline">\(Q_{\rm ext}^{\rm pol}\)</span> is the extinction polarization coefficient. This efficiency is determined by the residual of the extinction efficiencies in the two-component where the electric field is parallel and perpendicular to the grain rotation axis (<span class="math inline">\(\mathbf{a}\)</span>) as <span class="math inline">\(0.5\left[Q_{\rm ext}(\mathbf{E}\parallel \mathbf{a})-Q_{\rm ext}(\mathbf{E}\perp \mathbf{a})\right]\)</span>. These components are taken from the { database}.</p>
+<section id="a-simple-case-of-0d-model-single-dust-composition-only-silicate-or-astrodust" class="level4" data-number="4.1.1">
+<h4 data-number="4.1.1" class="anchored" data-anchor-id="a-simple-case-of-0d-model-single-dust-composition-only-silicate-or-astrodust"><span class="header-section-number">4.1.1</span> <code>A simple case of 0D model</code>: single dust composition (only silicate or astrodust)</h4>
+<p><span class="math display">\[\begin{equation}
+    p_{\rm ext}/N_{\rm gas} = 100\times \left(\int^{a_{\rm max}}_{a_{\rm min}}\frac{1}{2}\pi a^{2}Q^{\rm pol}_{\rm ext}f(a)\frac{1}{n_{\rm H}}\frac{dn}{da}da\right) ~~~\%
+\end{equation}\]</span></p>
+<p>In this case, the physical parameters can be adopted locally from observational constraints.</p>
+</section>
+<section id="a-simple-case-of-0d-model-mixture-dust-composition-silicate-and-carbonaceous" class="level4" data-number="4.1.2">
+<h4 data-number="4.1.2" class="anchored" data-anchor-id="a-simple-case-of-0d-model-mixture-dust-composition-silicate-and-carbonaceous"><span class="header-section-number">4.1.2</span> <code>A simple case of 0D model</code>: mixture dust composition (silicate and carbonaceous)</h4>
+<p><span class="math display">\[\begin{equation}
+    p_{\rm ext}/N_{\rm gas} = 100\times \sum_{\rm dust = sil,car}\left(\int^{a_{\rm max}}_{a_{\rm min}}\frac{1}{2}\pi a^{2}Q^{\rm pol}_{\rm ext, dust}f(a)\frac{1}{n_{\rm H}}\frac{dn_{\rm dust}}{da}da\right) ~~~\%
+\end{equation}\]</span></p>
+</section>
+</section>
+<section id="thermal-dust-polarisation" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="thermal-dust-polarisation"><span class="header-section-number">4.2</span> Thermal Dust Polarisation</h3>
+<p>With a uniform magnetic field orientation, the total and polarised intensity can be estimated analytically. The total emission intensity at a position <span class="math inline">\(r_{i}\)</span> along a line of sight is <span class="math display">\[\begin{equation}
+        dI_{\rm em} = n_{\rm H}ds \times \int^{a_{\rm max}}_{a_{\rm min}} Q_{\rm abs} \pi a^{2}
+        \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da.~~~
+\end{equation}\]</span> Naturally, this intensity depends on the line of sight <span class="math inline">\(A_{\rm V}\)</span>, as determined in Equation <span class="math inline">\(\ref{eq:Av_obs}\)</span>. <span class="math inline">\(B_{\lambda}(T_{\rm d})\)</span> is the black-body radiation at dust temperature <span class="math inline">\(T_{\rm d}\)</span>, <span class="math inline">\(Q_{\rm abs}\)</span> is the extinction coefficient and a function of <span class="math inline">\(a\)</span> and <span class="math inline">\(\lambda\)</span>. In this study, we assume <span class="math inline">\(T_{\rm d}\)</span> is in equilibrium and consequently disregard the <span class="math inline">\(T_{\rm d}\)</span> distribution, which contrasts with the previous configuration in . This assumption is particularly justifiable for starless cores, where grains are probably large, making the nanodust contribution insignificant. The <span class="math inline">\(T_{\rm d}\)</span> distribution for large grains is a delta function. Additionally, our focus is on the far-IR to millimetre wavelength range, where the optical depth is very low, leading to <span class="math inline">\(e^{-\tau} \simeq 1\)</span>. For cross-check, our calculation shows that <span class="math inline">\(\tau_{850\,\rm \mu m}\sim 10^{-4}\)</span>.</p>
+<p>The polarized intensity of thermal dust at a distance <span class="math inline">\(r_{i}\)</span> on a line of sight is given by <span class="math display">\[\begin{equation}\label{eq:Ipol_emi}
+        dI_{\rm pol} = n_{\rm H}ds\times \int^{a_{\rm max}}_{a_{\rm align}} f(a)\sin^{2}\psi Q^{\rm pol}_{\rm abs}\pi a^{2} \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da, ~~~
+\end{equation}\]</span> where <span class="math inline">\(\psi\)</span> is the inclination angle of magnetic field orientation to the line of sight, <span class="math inline">\(Q^{\rm pol}_{\rm abs}\)</span> is the absorption polarisation efficiency, determined by <span class="math inline">\(0.5\left[Q_{\rm abs}(\mathbf{E}\parallel \mathbf{a})-Q_{\rm abs}(\mathbf{E}\perp \mathbf{a})\right]\)</span>. These components are taken from the { database}. As we can see, the angle <span class="math inline">\(\phi\)</span> scales the amplitude of the degree of polarisation, but does not influence the shape of the spectrum, and the degree is maximum for <span class="math inline">\(\phi=90^{o}\)</span> (i.e.&nbsp;the magnetic field is completely on the plane of the sky). In the following, we therefore consider the case of <span class="math inline">\(\phi=90^{o}\)</span> and discuss its effect later.</p>
+<p>The degree of thermal dust polarization along a given line of sight is computed as <span class="math display">\[\begin{equation}
+    p_{\rm em} = 100 \times \frac{\int_{s}dI_{\rm pol}}{\int_{s}dI_{\rm em}} ~~~{(\%)}    
+\end{equation}\]</span></p>
+<section id="a-simple-case-of-0d-model-single-dust-composition-only-silicate-or-astrodust-1" class="level4" data-number="4.2.1">
+<h4 data-number="4.2.1" class="anchored" data-anchor-id="a-simple-case-of-0d-model-single-dust-composition-only-silicate-or-astrodust-1"><span class="header-section-number">4.2.1</span> <code>A simple case of 0D model</code>: single dust composition (only silicate or astrodust)</h4>
+<p><span class="math display">\[\begin{equation}
+    p_{\rm em} = 100 \times \frac{\int^{a_{\rm max}}_{a_{\rm align}} f(a)\sin^{2}\psi Q^{\rm pol}_{\rm abs}\pi a^{2} \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da}{\int^{a_{\rm max}}_{a_{\rm min}} Q_{\rm abs} \pi a^{2}
+        \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da} ~~~{(\%)}    
+\end{equation}\]</span></p>
+</section>
+<section id="a-simple-case-of-0d-model-mixtured-dust-composition-silicate-and-carbonaceous" class="level4" data-number="4.2.2">
+<h4 data-number="4.2.2" class="anchored" data-anchor-id="a-simple-case-of-0d-model-mixtured-dust-composition-silicate-and-carbonaceous"><span class="header-section-number">4.2.2</span> <code>A simple case of 0D model</code>: mixtured dust composition (silicate and carbonaceous)</h4>
+<p>If silicate and carbon grains are separated: only silicate is aligned and polarized <span class="math display">\[\begin{equation}
+    p_{\rm em} = 100 \times \frac{\int^{a_{\rm max}}_{a_{\rm align}} f(a)\sin^{2}\psi Q^{\rm pol}_{\rm abs}\pi a^{2} \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da}{\sum_{\rm dust=sil,car}\int^{a_{\rm max}}_{a_{\rm min}} Q_{\rm abs,dust} \pi a^{2}
+        \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn_{\rm dust}}{da}da} ~~~{(\%)}    
+\end{equation}\]</span></p>
+<p>If silicate and carbon grains are bonded together: both silicate and carbon are aligned and polarized <span class="math display">\[\begin{equation}
+    p_{\rm em} = 100 \times \frac{\sum_{\rm dust=sil,car}\int^{a_{\rm max}}_{a_{\rm align}} f(a)\sin^{2}\psi Q^{\rm pol}_{\rm abs,dust}\pi a^{2} \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn_{\rm dust}}{da}da}{\sum_{\rm dust=sil,car}\int^{a_{\rm max}}_{a_{\rm min}} Q_{\rm abs,dust} \pi a^{2}
+        \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn_{\rm dust}}{da}da} ~~~{(\%)}    
+\end{equation}\]</span></p>
+
+
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

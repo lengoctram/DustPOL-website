@@ -1,1 +1,219 @@
-# What is DustPOL-py
+---
+title: "Fundamental of DustPOL-py"
+---
+
+## Radiative Torques Alignment (RAT-A)
+
+The physics of grain alignment by radiative torques is described in detail in numerous works. In this section, we recall the principles of this theory and formulations for our model. For more details, we refer to the most recent reviews in [Andersson et al. 2015](https://ui.adsabs.harvard.edu/abs/2015ARA%26A..53..501A/abstract) and [Tram \& Hoang 2022](https://ui.adsabs.harvard.edu/abs/2022FrASS...9.3927T/abstract), and studies in [Lazarian \& Hoang 2021](https://ui.adsabs.harvard.edu/abs/2021ApJ...908...12L/abstract) and [Hoang et al. 2022](https://ui.adsabs.harvard.edu/abs/2022AJ....164..248H/abstract).
+
+### Characterization of Radiation Field
+
+A radiation field is characterized by the following three physical paramters: the radiation spectrum of $u_{\lambda}$, the mean wavelength of $\bar{\lambda}$ and an anisotropy degree of $\gamma$. 
+
+#### The radiation strength 
+The strength is defined by a dimensionless 
+<!-- \begin{equation} -->
+$$
+  U=\frac{\int_{0.091\,\mu m}^{20\,\mu m} u_{\lambda}d\lambda}{u_{\rm ISRF}}, \label{eq:test}
+$$
+<!-- \end{equation} -->
+where $u_{\rm ISRF}=8.64\times 10^{-13}\,\rm erg\,cm^{-3}$ is the radiation energy density of the interstellar radiation field (ISRF) in the solar neighborhood. For a typical interstellar radiation field, $U=1$.
+
+#### The mean wavelength
+The mean wavelength of this radiation is defined as
+\begin{equation}
+  \bar{\lambda}=\frac{\int_{0.091\,\mu m}^{20\,\mu m}\lambda u_{\lambda}d\lambda}{\int_{0.091\,\mu m}^{20\,\mu m}u_{\lambda}d\lambda}
+\end{equation}
+with $\bar{\lambda}=1.3\,\mu$m for a typical interstellar radiation field.
+
+#### The anisotropic degree
+In general, the anisotropic degree of a radiation field falls within $0<\gamma\leq 1$. For a typical interstellar radiation field, $\gamma \simeq 0.1$, where $\gamma \simeq 0.3$ in dense core and $\gamma \simeq 1$ in star-forming regions.
+
+### Radiative Torque
+
+The average radiative torque induced by the interaction of an irregular grain (with an effective size $a$), and an anisotropic radiation field (with an isotropic degree of $\gamma$) is \begin{equation}
+    \bar{\Gamma}_{\rm RAT} = \pi a^{2} \gamma (8.64\times 10^{-13} U)\left(\frac{\bar{\lambda}}{2\pi}\right)\bar{Q}_{\Gamma}
+\end{equation} where $\bar{Q}_{\Gamma}$ is the RAT efficiency, which is 
+\begin{equation}
+    \bar{Q}_{\Gamma}=\left\{
+    \begin{array}{l l}
+        2\left(\frac{\bar{\lambda}}{a}\right)^{-2.7}   & \quad \text{for } a\leq \frac{\bar{\lambda}}{1.8},\\
+        0.4  & \quad \text{for } a>\frac{\bar{\lambda}}{1.8}
+    \end{array}\right.
+\end{equation}
+
+### Angular Velocity and Grain Alignment Size
+
+The RAT accelerates the irregular grain to a finite angular velocity ($\omega_{\rm RAT}$). For a given RAT, this rotation is faster for a lower initial momentum ($I_{a}$), and experiences deceleration due to gas collisions and reemission from the grain, characterised by the damping timescale ($\tau_{\rm damp}$). The maximum angular velocity with which an irregular grain is gained by RAT is \begin{equation}
+    \omega_{\rm RAT} = \frac{\bar{\Gamma}_{\rm RAT}\tau_{\rm damp}}{I_{a}}
+\end{equation} The initial momentum of a grain of size $a$ is $I_{a}=8\pi\rho a^{5}/15$ with $\rho$ is the mass density. The damping time scale is \begin{equation}
+    \begin{split}
+        \tau_{\rm damp} \simeq 8.3\times 10^{3}&\left(\frac{a}{0.1\,\rm \mu m}\right)\left(\frac{\rho}{3\,\rm g\,cm^{-3}}\right) \\ 
+        &\times \left(\frac{10^{3}\,\rm cm^{-3}}{n_{\rm gas}}\right)\left(\frac{10\,\rm K}{T_{\rm gas}}\right)^{1/2} \left(\frac{1}{1+F_{\rm IR}}\right) ~~~ {(\rm yr)}
+    \end{split}
+\end{equation} with $F_{\rm IR}$ is the ratio in timescale between the gas collision and the re-emission damping, which approximates \begin{equation}
+    F_{\rm IR} = 0.038\times U^{2/3}\left(\frac{0.1\,\rm \mu m}{a}\right)\left(\frac{10^{3}\,\rm cm^{-3}}{n_{\rm gas}}\right)\left(\frac{10\,\rm K}{T_{\rm gas}}\right)^{1/2}
+\end{equation}
+
+The alignment of the grain is withstand if its angular velocity is three times higher than the thermal angular velocity ($(k_{\rm B}T_{\rm gas}/I_{a})^{1/2}$). Therefore, the minimum grain size that is aligned (referred to as the alignment size $a_{\rm align}$) is the solution of the relation \begin{equation}
+    \omega_{\rm RAT}(a_{\rm align}) = 3\times \left(\frac{15k_{\rm B}T_{\rm gas}}{8\pi \rho a_{\rm align}^{5}}\right)^{1/2}
+\end{equation}
+
+### Alignment function
+
+Dust grain alignment can be characterised by two separate mechanisms: internal alignment (where the grain's minor axis aligns with its angular momentum) and external alignment (where the angular momentum aligns with a preferred axis, which could be the ambient magnetic field, radiation field, gas flow).
+
+The efficiency of internal alignment is qualitatively characterised by $Q_{\rm X}$, while it is $Q_{J}$ for external alignment. The net grain alignment is called the Rayleigh reduction factor of $R(a)=\langle Q_{X}Q_{J}\rangle \simeq f_{\rm high-J}$. The alignment efficiency will change from 0 to $f_{\rm high-J}$ for grain size from smaller to larger than $a_{\rm align}$. As this transition is a step-function and differs from the smooth change seen from numerical models, a smooth transition will be 
+\begin{equation}
+    f(a) = f_{\rm max}\left[1-e^{-(0.5a/a_{\rm align})^{3}} \right]
+\end{equation} this is called the alignment function with $f_{\rm max}=1$ for perfect alignment.
+
+## Radiative Torque Disruption (RAT-D)
+
+A grain rotating at rotational velocity $\omega$ results in tensile stress $S=\rho \omega^{2}a^{2}/4$ on the materials making up the grain. Thus, the maximum rotational velocity that a grain can withstand is: \begin{equation} \label{eq:omega_crit}
+    \omega_{\rm crit} = \frac{2}{a}\left(\frac{S_{\rm max}}{\rho}\right)^{1/2} \simeq \frac{3.6\times 10^{8}}{a_{-5}}S^{1/2}_{\rm max,7}\hat{\rho}^{-1/2},
+\end{equation} where $S_{\rm max,7}=S_{\rm max}/(10^{7} \rm erg\,cm^{-3})$.
+
+One can see from Equation of $\Omega_{\rm RAT}$ that the stronger the radiation field and the larger the grain size, the faster the rotation of the grain. A strong radiation field can thus generate such a fast rotation that the induced stress on large grains can result in a spontaneous disruption. This disruption mechanism is named as RAT-D. From $\Omega_{\rm RAT}$ and $\Omega_{\rm crit}$, we can derive the critical size above which grains are disrupted as 
+\begin{equation}
+    \left(\frac{a_{\rm disr}}{0.1\,\rm \mu m}\right)^{2.7} \simeq 5.1\gamma^{-1}_{0.1}U^{-1/3}\bar{\lambda}^{1.7}_{0.5}S^{1/2}_{\rm max,7},
+\end{equation} where $\bar{\lambda}_{0.5} = \bar{\lambda}/(0.5\,\mu \rm m)$.
+
+## Grain-size distribution
+
+Dust grains are disrupted efficiently (for $a$ greater than $a_{\rm disr}$) in stronger radiation fields. The disruption of dust grain by RATD can modify the grain-size distribution. Since only the largest grains are affected by the RATD mechanism, RATD determines the upper limit of the size distribution. The disruption is thus expected to enhance more smaller grains, resulting in a steeper grain size distribution than in the standard ISM.
+
+### MRN-like distribution
+
+A power-law grain size distribution assumption for both the original large grains and the smaller grains produced by disruption, with a power-law index $\beta$ as 
+\begin{equation}
+    \frac{1}{n_{\rm H}}\frac{dn_{\rm sil,car}}{da}=Ca^{\beta} \ \ \ \rm{(a_{\rm min}\leq a \leq a_{\rm max})},
+\end{equation} where $C$ is the normalization constants. This value is distinc for different grain compositions, and is determined through the dust-to-gas mass ratio $M_{\rm d/g}$.
+
+#### Mixture composition
+
+If we consider a combination of silicate and carbonaceous grain, we have \begin{equation}
+  \begin{split}
+    \sum_{\rm j=sil,car} C_{j}\rho_{j} &= \frac{(4+\beta)M_{\rm d/g} m_{\rm gas}}{\frac{4}{3}\pi (a^{4+\beta}_{\rm max}-a^{4+\beta}_{\rm min})} ~~~~~~~\rm{for\ \beta \neq -4} \\
+    \sum_{\rm j=sil,car} C_{j}\rho_{j} &= \frac{M_{\rm d/g}m_{\rm gas}}{\frac{4}{3}\pi(\ln a_{\rm max} - \ln a_{\rm min})} ~~~\rm{for\ \beta = -4}.
+ \end{split}
+\end{equation} where $C_{\rm sil}/C_{\rm car}$ is adopted as 1.12, and $M_{\rm d/g}$ is the dust-to-mass ratio (0.01 for standard ISM).
+
+#### Single composition
+
+For the single silicate or Astrodust, the size distribution is simply as 
+\begin{equation}
+  \begin{split}
+    C\rho_{\rm dust} &= \frac{(4+\beta)M_{\rm d/g} m_{\rm gas}}{\frac{4}{3}\pi (a^{4+\beta}_{\rm max}-a^{4+\beta}_{\rm min})} ~~~~~~~\rm{for\ \beta \neq -4} \\
+    C\rho_{\rm dust} &= \frac{M_{\rm d/g}m_{\rm gas}}{\frac{4}{3}\pi(\ln a_{\rm max} - \ln a_{\rm min})} ~~~\rm{for\ \beta = -4}.
+ \end{split}
+\end{equation}
+
+### Others
+
+#### Weingartner and Draine (WD01)
+The size distribution comprises of 2 components: log-normal and non log-normal. Please have a look at [Weingartner \& Draine 2001](https://ui.adsabs.harvard.edu/abs/2001ApJ...548..296W/abstract) for more details.
+
+For the single carbonaceous grain (parameters denoted by $g$)
+\begin{equation}
+  \frac{dn}{da}=\sum_{j=1}^{2}\frac{n_{0j}}{a}\exp{ \left(-\frac{[\ln(a/a_{0j})]^{2}}{2\sigma^{2}_{j}}\right) }   + \frac{C_{g}}{a}\left(\frac{a}{a_{t,g}}\right)^{\alpha_{g}} F(\alpha;\beta_{g},a_{t,g}) \times 
+\left\{
+    \begin{array}{l l}
+        1 & \quad \text{for } 3.5Å<a<a_{t,g},\\
+        \exp{\left[-[(a-a_{t,g}/a_{c,g})]^{3}\right] }  & \quad \text{for } a>a_{t,g}
+    \end{array}\right.
+\end{equation}
+with $n_{0,1}=2.0496e-7$ and $n_{0,2}= 9.6005e-11$.
+
+For the silicate grain (parameters denoted by $s$)
+\begin{equation}
+  \frac{dn}{da}=\frac{C_{s}}{a}\left(\frac{a}{a_{t,s}}\right)^{\alpha_{s}} F(\alpha;\beta_{s},a_{t,s}) \times 
+\left\{
+    \begin{array}{l l}
+        1 & \quad \text{for } 3.5Å<a<a_{t,s},\\
+        \exp{\left[-[(a-a_{t,s}/a_{c,s})]^{3}\right] }  & \quad \text{for } a>a_{t,s}
+    \end{array}\right.
+\end{equation}
+
+The curvature of the non log-normal component is given as
+\begin{equation}
+  F(\alpha;\beta, a_{t}) = \left\{
+    \begin{array}{l l}
+        1 + \beta a/a_{t} & \quad \text{for } \beta>0,\\
+        (1-\beta a/a_{t})^{-1}  & \quad \text{for } \beta<0
+    \end{array}\right.
+\end{equation}
+
+Once see that there are 5 adjustable parameters ($C_{g}$, $a_{t,g}$, $a_{c,g}$, $\alpha_{g}$, $\beta_{g}$) for the grain size distribution of carbonaceous grain, while there are 5 parameters ($C_{s}$, $a_{t,s}$, $a_{c,s}$, $\alpha_{s}$, $\beta_{s}$) for silicate grains. For the best values, please see Table 1 in [Weingartner \& Draine 2001](https://ui.adsabs.harvard.edu/abs/2001ApJ...548..296W/abstract).
+
+#### Draine and Li (DL07)
+The form of the grain size distribution is similar to the WD, but with the correction for the log-normal component. See [Draine \& Li 2007](https://ui.adsabs.harvard.edu/abs/2007ApJ...657..810D/abstract) for more information.
+
+In principle, the differents or the carbonaceous, 
+\begin{equation}
+  n_{0j} = \frac{3}{(2\pi)^{3/2}}\frac{\exp(4.5\sigma^{2}_{j})}{1+\erf(x_{j})}\frac{m_{C}}{\rho_{C}a^{3}_{Mj}\sigma_{j}}b_{j} ~~~{\rm with}~~~ x_{j}=\frac{\ln(a_{\rm peak,j}/a_{\rm min})}{\sqrt{2}\sigma_{j}}
+\end{equation}
+where $\rho_{C}$ is the carbon mass density, $b_{C}$ is the total C abundance (per H nucleus) in the log-normal populations, $m_{C}$ is the mass of a carbon atom, and $a_{\rm peak,j} \equiv a_{0j}\exp(3\sigma^{2}_{j})$ is the location of the peak in the mass distribution ($\approx a^{3}dn/dlna$).
+
+#### Astrodust (HD23)
+The log-normal and non-log normal components for the Astrodust are
+\begin{equation}
+  \frac{dn}{da} = \frac{B_{\rm Ad}}{a}\exp\left(-\frac{[\ln(a/a_{0,\rm Ad})]^{2}}{2\sigma^{2}_{\rm Ad}}\right) + \frac{A_{0}}{a}\exp\left(\sum_{i=1}^{5}A_{i}\left[\ln\left(\frac{a}{Å}\right)\right]^{i}\right)
+\end{equation}
+where the parameters are given in Table 1 in [Hensley \& Draine 2023](https://ui.adsabs.harvard.edu/abs/2023ApJ...948...55H/abstract).
+
+## Degree of Dust Polarisation
+
+In this model, we assume that dust grains are completely aligned with uniform magnetic field, and the emission is optically thin.
+
+### Starlight Polarisation
+
+The degree of polarisation of starlight polarisation for a population of dust, along a certain line of sight, is \begin{equation}
+    p_{\rm ext} = 100\times \int_{s} n_{\rm H}ds \left(\int^{a_{\rm max}}_{a_{\rm min}}\frac{1}{2}\pi a^{2}Q^{\rm pol}_{\rm ext}f(a)\frac{1}{n_{\rm H}}\frac{dn}{da}da\right) ~~~\%
+\end{equation} where $Q_{\rm ext}^{\rm pol}$ is the extinction polarization coefficient. This efficiency is determined by the residual of the extinction efficiencies in the two-component where the electric field is parallel and perpendicular to the grain rotation axis ($\mathbf{a}$) as $0.5\left[Q_{\rm ext}(\mathbf{E}\parallel \mathbf{a})-Q_{\rm ext}(\mathbf{E}\perp \mathbf{a})\right]$. These components are taken from the \footnote{\href{http://arks.princeton.edu/ark:/88435/dsp01qb98mj541}{http://arks.princeton.edu/ark:/88435/dsp01qb98mj541}}{\textsc{astrodust} database}.
+
+#### `A simple case of 0D model`: single dust composition (only silicate or astrodust)
+\begin{equation}
+    p_{\rm ext}/N_{\rm gas} = 100\times \left(\int^{a_{\rm max}}_{a_{\rm min}}\frac{1}{2}\pi a^{2}Q^{\rm pol}_{\rm ext}f(a)\frac{1}{n_{\rm H}}\frac{dn}{da}da\right) ~~~\%
+\end{equation} 
+
+In this case, the physical parameters can be adopted locally from observational constraints.
+
+#### `A simple case of 0D model`: mixture dust composition (silicate and carbonaceous)
+\begin{equation}
+    p_{\rm ext}/N_{\rm gas} = 100\times \sum_{\rm dust = sil,car}\left(\int^{a_{\rm max}}_{a_{\rm min}}\frac{1}{2}\pi a^{2}Q^{\rm pol}_{\rm ext, dust}f(a)\frac{1}{n_{\rm H}}\frac{dn_{\rm dust}}{da}da\right) ~~~\%
+\end{equation} 
+
+### Thermal Dust Polarisation 
+With a uniform magnetic field orientation, the total and polarised intensity can be estimated analytically. The total emission intensity at a position $r_{i}$ along a line of sight is \begin{equation}
+        dI_{\rm em} = n_{\rm H}ds \times \int^{a_{\rm max}}_{a_{\rm min}} Q_{\rm abs} \pi a^{2} 
+        \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da.~~~
+\end{equation} Naturally, this intensity depends on the line of sight $A_{\rm V}$, as determined in Equation \ref{eq:Av_obs}. $B_{\lambda}(T_{\rm d})$ is the black-body radiation at dust temperature $T_{\rm d}$, $Q_{\rm abs}$ is the extinction coefficient and a function of $a$ and $\lambda$. In this study, we assume $T_{\rm d}$ is in equilibrium and consequently disregard the $T_{\rm d}$ distribution, which contrasts with the previous configuration in \textsc{dustpol-py}. This assumption is particularly justifiable for starless cores, where grains are probably large, making the nanodust contribution insignificant. The $T_{\rm d}$ distribution for large grains is a delta function. Additionally, our focus is on the far-IR to millimetre wavelength range, where the optical depth is very low, leading to $e^{-\tau} \simeq 1$. For cross-check, our calculation shows that $\tau_{850\,\rm \mu m}\sim 10^{-4}$.
+
+The polarized intensity of thermal dust at a distance $r_{i}$ on a line of sight is given by \begin{equation}\label{eq:Ipol_emi}
+        dI_{\rm pol} = n_{\rm H}ds\times \int^{a_{\rm max}}_{a_{\rm align}} f(a)\sin^{2}\psi Q^{\rm pol}_{\rm abs}\pi a^{2} \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da, ~~~
+\end{equation} where $\psi$ is the inclination angle of magnetic field orientation to the line of sight, $Q^{\rm pol}_{\rm abs}$ is the absorption polarisation efficiency, determined by $0.5\left[Q_{\rm abs}(\mathbf{E}\parallel \mathbf{a})-Q_{\rm abs}(\mathbf{E}\perp \mathbf{a})\right]$. These components are taken from the \footnote{\href{http://arks.princeton.edu/ark:/88435/dsp01qb98mj541}{http://arks.princeton.edu/ark:/88435/dsp01qb98mj541}}{\textsc{astrodust} database}. As we can see, the angle $\phi$ scales the amplitude of the degree of polarisation, but does not influence the shape of the spectrum, and the degree is maximum for $\phi=90^{o}$ (i.e. the magnetic field is completely on the plane of the sky). In the following, we therefore consider the case of $\phi=90^{o}$ and discuss its effect later.
+
+The degree of thermal dust polarization along a given line of sight is computed as 
+\begin{equation}
+    p_{\rm em} = 100 \times \frac{\int_{s}dI_{\rm pol}}{\int_{s}dI_{\rm em}} ~~~{(\%)}    
+\end{equation}
+
+#### `A simple case of 0D model`: single dust composition (only silicate or astrodust)
+\begin{equation}
+    p_{\rm em} = 100 \times \frac{\int^{a_{\rm max}}_{a_{\rm align}} f(a)\sin^{2}\psi Q^{\rm pol}_{\rm abs}\pi a^{2} \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da}{\int^{a_{\rm max}}_{a_{\rm min}} Q_{\rm abs} \pi a^{2} 
+        \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da} ~~~{(\%)}    
+\end{equation}
+
+#### `A simple case of 0D model`: mixtured dust composition (silicate and carbonaceous)
+If silicate and carbon grains are separated: only silicate is aligned and polarized
+\begin{equation}
+    p_{\rm em} = 100 \times \frac{\int^{a_{\rm max}}_{a_{\rm align}} f(a)\sin^{2}\psi Q^{\rm pol}_{\rm abs}\pi a^{2} \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn}{da}da}{\sum_{\rm dust=sil,car}\int^{a_{\rm max}}_{a_{\rm min}} Q_{\rm abs,dust} \pi a^{2} 
+        \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn_{\rm dust}}{da}da} ~~~{(\%)}    
+\end{equation}
+
+If silicate and carbon grains are bonded together: both silicate and carbon are aligned and polarized
+\begin{equation}
+    p_{\rm em} = 100 \times \frac{\sum_{\rm dust=sil,car}\int^{a_{\rm max}}_{a_{\rm align}} f(a)\sin^{2}\psi Q^{\rm pol}_{\rm abs,dust}\pi a^{2} \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn_{\rm dust}}{da}da}{\sum_{\rm dust=sil,car}\int^{a_{\rm max}}_{a_{\rm min}} Q_{\rm abs,dust} \pi a^{2} 
+        \times B_{\lambda}(T_{\rm d})\frac{1}{n_{\rm H}}\frac{dn_{\rm dust}}{da}da} ~~~{(\%)}    
+\end{equation}

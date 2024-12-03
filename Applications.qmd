@@ -1,0 +1,85 @@
+---
+title: "Applications of DustPOL-py"
+---
+We present some examples of using DustPOL-py in understanding the physics of linear dust polarisation towards different astrophysical object with distinc physical properties.
+
+## Starless core Pipe-109
+
+Starless cores are an ideal target for our study because of the high density where grain growth is expected to occur, and grain alignment is still significant. Numerous starless cores have been observed in multiple wavelengths from starlight polarisation in optical and near-infrared (Near-IR) to thermal dust polarisation in the submillimeter (submillimeter) range. These observations usually report a drop of $p(\%)$ from the cloud surface to the core via the relation to the total intensity ($I$) or visual extinction ($A_{\rm V}$) as a power law ($p(\%) \sim I^{-\alpha}$). This depolarisation is known as the polarisation hole. In some cases, this slope $\alpha$ approaches $1$ in proximity to the centre of the core.
+<figure style="text-align:center;">
+  <img src="figures/pipe_109.pdf" alt="Descriptive Text" style="width:40%;">
+  <img src="figures/pipe_109_model.pdf" alt="Descriptive Text" style="width:55%;">
+  <figcaption>Figure 3: **(left)**: The starless core 109 in the Pipe Nebula, known as Pipe-109. The background is the visual extinction. The white segments are the polarisation in optical (0.65$\,\mu$m), the gray segments are are the polarisation in near-infrared (1.65$\,\mu$m), and the black segmnets are the polarisation in sub-millimeter (850$\,\mu$m). **(Right)**: The comparison of DustPOL-py predictions (lines) to these observations (dots). These predictions reveal the grain growth from outside to inside of the starless core. This work is in a series of `Grain Alignment Physics and grain Evolution using dust POLarization (GRAPE-POL)`, led by Dr. Le N. Tram. 
+Observational data is taken from [Alves et al. 2014](https://ui.adsabs.harvard.edu/abs/2014A%26A...569L...1A/abstract)</figcaption>
+</figure>
+
+## Musca filament
+Musca is located at a distance of $170\,$pc. The filament is in its early evolutionary stage and lacks active star formation. Musca is known for being an isothermal filament in hydrostatic equilibrium and already fragmented; new stars can be formed in the near future. In this work, we use $\it{Planck}$ polarization data at 850$\,\mu$m, showing that the degree of polarization ($p(\%)$) is lower toward the spike of the filament (green dots in Figure 1). The DustPOL-py model well reproduce this decline of $p(\%)$ due to the loss of grain alignment efficiency, because of higher gas density and lower radiation intensity at the filament's spike.
+
+<figure style="text-align:center;">
+  <img src="figures/Musca.pdf" alt="Descriptive Text" style="width:100%;">
+  <figcaption>Figure 1: Series of ```B-fields And dust in interstelLar fiLAments using Dust POLarization (BALLAD-POL)```, led by Ms. Nguyen B. Ngoc. For more details, please have a look at  this [article](https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract)</figcaption>
+</figure>
+
+<!-- ::: { .columns } -->
+<!-- ::: {.column width=60%} -->
+<!-- ```{=html} -->
+<!-- <object data="figures/Musca.pdf" type="application/pdf" width="100%" height="10%" style="min-height:30vh;"> -->
+<!--     <p>It appears you don't have a PDF plugin for this browser. -->
+<!--     No biggie... you can <a href="slides123.pdf">click here to -->
+<!--     download the PDF file.</a></p> -->
+<!-- </object> -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.column width=35%} -->
+<!-- <div style="margin-left: 20px;"> -->
+<!-- <div class='justify-content'> -->
+<!-- ### Information  -->
+<!--   This work is in a series of ```B-fields And dust in interstelLar fiLAments using Dust POLarization (BALLAD-POL)```, led by Ms. Nguyen B. Ngoc. For more details, please have a look at  this [article](https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract). -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- ::: -->
+<!-- ::: -->
+
+## Ophiuchus dark cloud (Oph-A)
+$\rho$ Oph-A is a molecular cloud in one of the closest dark
+cloud complexes and star-forming regions, $\rho$ Ophiuchi. The
+distance to this complex is reported to be ∼120–160 pc. This
+region is significantly influenced by high-energy radiation from
+a nearby high-mass Oph-S1 star, which is a B association star. Among several dark cloud cores in $\rho$ Ophiuchi, Oph-A is one of the best laboratories to understand
+the multiband dust polarization in the context of highenergy
+radiation giving us an opportunity to investigate RAT
+in detail. Using the SOFIA/HAWC+ polarimetric data at 89 and 154$\,\mu$m, we find that the degree of polarization ($p(\%)$) of thermal dust emission first
+increases with the grain temperature and then decreases once the grain temperature exceeds $\simeq 25–32\,$K. The latter trend differs from the prediction of the popular RAdiative Torques (RATs) alignment theory, which implies a monotonic increase of the polarization fraction with the grain temperature. The DustPOL-py results could successfully reproduce both the rising and declining trends of the observational data. Moreover, we show that the alignment of only silicate grains or a mixture of silicate–carbon grains within a composite structure can reproduce the observational trends.
+<figure style="text-align:center;">
+  <img src="figures/SOFIA_Oph.pdf" alt="Descriptive Text" style="width:80%;">
+  <figcaption>Figure 2: DustPOL-py vs. SOFIA/HAWC+ observations, led by Dr. Le N. Tram. For more details, please have a look at  this [article](https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract)</figcaption>
+</figure>
+
+## Orion Molecular Cloud
+Located at a distance of 388$\pm 5\,$pc, the Orion Nebula is the nearest high-mass star formation region. OMC-1 or Orion A is located behind an H II region ionized by O-B stars from the Trapezium cluster. OMC-1 consists of two principal clumps, the northern Becklin– Neugebauer–Kleinmann–Low (BN-KL) clump and the southern Orion S clump. BN-KL hosts an extremely explosive molecular outflow with a wide opening angle and multiple ejecta. 
+
+### Orion BN-KL: $p-T_{\rm dust}$ relations for single wavelengths
+We use thermal dust polarization data observed toward the Orion BN-KL by SOFIA/HAWC+ at 89, 154 and 214$\,\mu$m and JCMT/POL-2 at 850$\,\mu$m. Figure 3 showed that DustPOL-py could reproduce observational trends of $p(\%)-T_{\rm dust}$.
+<figure style="text-align:center;">
+  <img src="figures/Orion_BNKL.pdf" alt="Descriptive Text" style="width:80%;">
+  <figcaption>Figure 3: DustPOL-py vs. SOFIA/HAWC+ and JCMT/POL-2 observations, led by Dr. Le N. Tram. For more details, please have a look at  this [article](https://ui.adsabs.harvard.edu/abs/2021ApJ...908..159T/abstract)</figcaption>
+</figure>
+
+### OMC-1: pixel-to-pixel at a single wavelength
+<figure style="text-align:center;">
+  <img src="figures/Orion_1_p2p.pdf" alt="Descriptive Text" style="width:80%;">
+  <figcaption>Figure 3: DustPOL-py vs. SOFIA/HAWC+ observations at 214$\,\mu$m, led by Dr. Le N. Tram. For more details, please have a look at  this [article](https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract)</figcaption>
+</figure>
+
+### OMC-1: polarization spectrum
+<figure style="text-align:center;">
+  <img src="figures/OMC-1-pol-spec-slope.pdf" alt="Descriptive Text" style="width:35%;">
+  <img src="figures/OMC-1-pol_spec_2layer.pdf" alt="Descriptive Text" style="width:60%;">
+  <figcaption>Figure 3: DustPOL-py vs. polarisation spectrum (SOFIA/HAWC+ and JCMT/POL-2 observations), led by Dr. Le N. Tram. Different panels are for different line of sights shown on the left figure. For more details, please have a look at  this [article](https://ui.adsabs.harvard.edu/abs/2024A%26A...689A.290T/abstract)</figcaption>
+</figure>
+<!-- <figure> -->
+<!--   <img src="figures/SOFIA_Oph.pdf" alt="Descriptive Text"> -->
+<!--   <figcaption>Figure 2: Series of ```B-fields And dust in interstelLar fiLAments using Dust POLarization (BALLAD-POL)```, led by Ms. Nguyen B. Ngoc. For more details, please have a look at  this [article](https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract)</figcaption> -->
+<!-- </figure> -->

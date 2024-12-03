@@ -1,1 +1,25 @@
 /* css styles */
+.center-text {
+  text-align: center;
+}
+
+.right-text {
+  text-align: right;
+}
+
+.justify-content {
+  text-align: justify;
+}
+
+.terminal {
+  background-color: #2d2d2d; /* Dark terminal background */
+  color: #ffffff; /* Light text */
+  font-family: monospace;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.fas.fa-external-link-alt {
+  color: #007bff; /* Change the color to blue */
+  margin-left: 5px; /* Add spacing between text and icon */
+}

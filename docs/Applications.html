@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DustPOL-py: a numerical modeling for linear dust polarization – DustPOL-website</title>
+<title>Applications of DustPOL-py – DustPOL-website</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -89,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -105,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Examples/scripts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Applications.html"> 
+    <a class="nav-link active" href="./Applications.html" aria-current="page"> 
 <span class="menu-text">Applications</span></a>
   </li>  
   <li class="nav-item">
@@ -141,16 +170,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dustpol-py---numerical-modelling---v1.6" id="toc-dustpol-py---numerical-modelling---v1.6" class="nav-link active" data-scroll-target="#dustpol-py---numerical-modelling---v1.6"><span class="header-section-number">1</span> DustPOL-py - numerical modelling - v1.6</a></li>
-  <li><a href="#authors" id="toc-authors" class="nav-link" data-scroll-target="#authors"><span class="header-section-number">2</span> Authors</a></li>
-  <li><a href="#contributors" id="toc-contributors" class="nav-link" data-scroll-target="#contributors"><span class="header-section-number">3</span> Contributors</a></li>
-  <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features"><span class="header-section-number">4</span> Features</a></li>
-  <li><a href="#upnext" id="toc-upnext" class="nav-link" data-scroll-target="#upnext"><span class="header-section-number">5</span> Upnext</a></li>
-  <li><a href="#history" id="toc-history" class="nav-link" data-scroll-target="#history"><span class="header-section-number">6</span> History:</a></li>
-  <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies"><span class="header-section-number">7</span> Dependencies</a></li>
-  <li><a href="#bugs" id="toc-bugs" class="nav-link" data-scroll-target="#bugs"><span class="header-section-number">8</span> Bugs</a></li>
-  <li><a href="#more-information-please-read" id="toc-more-information-please-read" class="nav-link" data-scroll-target="#more-information-please-read"><span class="header-section-number">9</span> More information, please read</a></li>
-  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations"><span class="header-section-number">10</span> Citations</a></li>
+  <li><a href="#starless-core-pipe-109" id="toc-starless-core-pipe-109" class="nav-link active" data-scroll-target="#starless-core-pipe-109"><span class="header-section-number">1</span> Starless core Pipe-109</a></li>
+  <li><a href="#musca-filament" id="toc-musca-filament" class="nav-link" data-scroll-target="#musca-filament"><span class="header-section-number">2</span> Musca filament</a></li>
+  <li><a href="#ophiuchus-dark-cloud-oph-a" id="toc-ophiuchus-dark-cloud-oph-a" class="nav-link" data-scroll-target="#ophiuchus-dark-cloud-oph-a"><span class="header-section-number">3</span> Ophiuchus dark cloud (Oph-A)</a></li>
+  <li><a href="#orion-molecular-cloud" id="toc-orion-molecular-cloud" class="nav-link" data-scroll-target="#orion-molecular-cloud"><span class="header-section-number">4</span> Orion Molecular Cloud</a>
+  <ul class="collapse">
+  <li><a href="#orion-bn-kl-p-t_rm-dust-relations-for-single-wavelengths" id="toc-orion-bn-kl-p-t_rm-dust-relations-for-single-wavelengths" class="nav-link" data-scroll-target="#orion-bn-kl-p-t_rm-dust-relations-for-single-wavelengths"><span class="header-section-number">4.1</span> Orion BN-KL: <span class="math inline">\(p-T_{\rm dust}\)</span> relations for single wavelengths</a></li>
+  <li><a href="#omc-1-pixel-to-pixel-at-a-single-wavelength" id="toc-omc-1-pixel-to-pixel-at-a-single-wavelength" class="nav-link" data-scroll-target="#omc-1-pixel-to-pixel-at-a-single-wavelength"><span class="header-section-number">4.2</span> OMC-1: pixel-to-pixel at a single wavelength</a></li>
+  <li><a href="#omc-1-polarization-spectrum" id="toc-omc-1-polarization-spectrum" class="nav-link" data-scroll-target="#omc-1-polarization-spectrum"><span class="header-section-number">4.3</span> OMC-1: polarization spectrum</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -159,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DustPOL-py: a numerical modeling for linear dust polarization</h1>
+<h1 class="title">Applications of DustPOL-py</h1>
 </div>
 
 
@@ -176,72 +204,93 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="dustpol-py---numerical-modelling---v1.6" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="dustpol-py---numerical-modelling---v1.6"><span class="header-section-number">1</span> DustPOL-py - numerical modelling - v1.6</h2>
-<p>– This numerical modelling calculates the multi-wavelength polarization degree of absorption and thermal dust emission based on Radiative Torque alignment (RAT-A), Magnetically enhanced RAT (MRAT) and Radiative Torque Disruption (RAT-D).</p>
-<p>– The routine will save the output files (wavelength and degree of polarization) for further analysis. A built-in routine for analysis is also provided.</p>
-<p>– For a quick look and investigation, please use a web-interface GUI: <a href="https://dustpol-py.streamlit.app" class="uri">https://dustpol-py.streamlit.app</a></p>
-<p>– The high-performance-computation techniques are embedded.</p>
+<p>We present some examples of using DustPOL-py in understanding the physics of linear dust polarisation towards different astrophysical object with distinc physical properties.</p>
+<section id="starless-core-pipe-109" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="starless-core-pipe-109"><span class="header-section-number">1</span> Starless core Pipe-109</h2>
+Starless cores are an ideal target for our study because of the high density where grain growth is expected to occur, and grain alignment is still significant. Numerous starless cores have been observed in multiple wavelengths from starlight polarisation in optical and near-infrared (Near-IR) to thermal dust polarisation in the submillimeter (submillimeter) range. These observations usually report a drop of <span class="math inline">\(p(\%)\)</span> from the cloud surface to the core via the relation to the total intensity (<span class="math inline">\(I\)</span>) or visual extinction (<span class="math inline">\(A_{\rm V}\)</span>) as a power law (<span class="math inline">\(p(\%) \sim I^{-\alpha}\)</span>). This depolarisation is known as the polarisation hole. In some cases, this slope <span class="math inline">\(\alpha\)</span> approaches <span class="math inline">\(1\)</span> in proximity to the centre of the core.
+<figure style="text-align:center;" class="figure">
+<img src="figures/pipe_109.pdf" alt="Descriptive Text" style="width:40%;" class="figure-img"> <img src="figures/pipe_109_model.pdf" alt="Descriptive Text" style="width:55%;" class="figure-img">
+<figcaption>
+Figure 3: <strong>(left)</strong>: The starless core 109 in the Pipe Nebula, known as Pipe-109. The background is the visual extinction. The white segments are the polarisation in optical (0.65<span class="math inline">\(\,\mu\)</span>m), the gray segments are are the polarisation in near-infrared (1.65<span class="math inline">\(\,\mu\)</span>m), and the black segmnets are the polarisation in sub-millimeter (850<span class="math inline">\(\,\mu\)</span>m). <strong>(Right)</strong>: The comparison of DustPOL-py predictions (lines) to these observations (dots). These predictions reveal the grain growth from outside to inside of the starless core. This work is in a series of <code>Grain Alignment Physics and grain Evolution using dust POLarization (GRAPE-POL)</code>, led by Dr.&nbsp;Le N. Tram. Observational data is taken from <a href="https://ui.adsabs.harvard.edu/abs/2014A%26A...569L...1A/abstract">Alves et al.&nbsp;2014</a>
+</figcaption>
+</figure>
 </section>
-<section id="authors" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="authors"><span class="header-section-number">2</span> Authors</h2>
-<p><code>Le Ngoc Tram</code>, Hyeseung Lee, and Thiem Hoang</p>
+<section id="musca-filament" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="musca-filament"><span class="header-section-number">2</span> Musca filament</h2>
+<p>Musca is located at a distance of <span class="math inline">\(170\,\)</span>pc. The filament is in its early evolutionary stage and lacks active star formation. Musca is known for being an isothermal filament in hydrostatic equilibrium and already fragmented; new stars can be formed in the near future. In this work, we use <span class="math inline">\(\it{Planck}\)</span> polarization data at 850<span class="math inline">\(\,\mu\)</span>m, showing that the degree of polarization (<span class="math inline">\(p(\%)\)</span>) is lower toward the spike of the filament (green dots in Figure 1). The DustPOL-py model well reproduce this decline of <span class="math inline">\(p(\%)\)</span> due to the loss of grain alignment efficiency, because of higher gas density and lower radiation intensity at the filament’s spike.</p>
+<figure style="text-align:center;" class="figure">
+<img src="figures/Musca.pdf" alt="Descriptive Text" style="width:100%;" class="figure-img">
+<figcaption>
+Figure 1: Series of <code>B-fields And dust in interstelLar fiLAments using Dust POLarization (BALLAD-POL)</code>, led by Ms.&nbsp;Nguyen B. Ngoc. For more details, please have a look at this <a href="https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract">article</a>
+</figcaption>
+</figure>
+<!-- ::: { .columns } -->
+<!-- ::: {.column width=60%} -->
+<!-- ```{=html} -->
+<!-- <object data="figures/Musca.pdf" type="application/pdf" width="100%" height="10%" style="min-height:30vh;"> -->
+<!--     <p>It appears you don't have a PDF plugin for this browser. -->
+<!--     No biggie... you can <a href="slides123.pdf">click here to -->
+<!--     download the PDF file.</a></p> -->
+<!-- </object> -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width=35%} -->
+<!-- <div style="margin-left: 20px;"> -->
+<!-- <div class='justify-content'> -->
+<!-- ### Information  -->
+<!--   This work is in a series of ```B-fields And dust in interstelLar fiLAments using Dust POLarization (BALLAD-POL)```, led by Ms. Nguyen B. Ngoc. For more details, please have a look at  this [article](https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract). -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- ::: -->
+<!-- ::: -->
 </section>
-<section id="contributors" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="contributors"><span class="header-section-number">3</span> Contributors</h2>
-<p>Pham N. Diep, Nguyen B. Ngoc, Bao Truong, Ngan Lê</p>
+<section id="ophiuchus-dark-cloud-oph-a" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="ophiuchus-dark-cloud-oph-a"><span class="header-section-number">3</span> Ophiuchus dark cloud (Oph-A)</h2>
+<span class="math inline">\(\rho\)</span> Oph-A is a molecular cloud in one of the closest dark cloud complexes and star-forming regions, <span class="math inline">\(\rho\)</span> Ophiuchi. The distance to this complex is reported to be ∼120–160 pc. This region is significantly influenced by high-energy radiation from a nearby high-mass Oph-S1 star, which is a B association star. Among several dark cloud cores in <span class="math inline">\(\rho\)</span> Ophiuchi, Oph-A is one of the best laboratories to understand the multiband dust polarization in the context of highenergy radiation giving us an opportunity to investigate RAT in detail. Using the SOFIA/HAWC+ polarimetric data at 89 and 154<span class="math inline">\(\,\mu\)</span>m, we find that the degree of polarization (<span class="math inline">\(p(\%)\)</span>) of thermal dust emission first increases with the grain temperature and then decreases once the grain temperature exceeds <span class="math inline">\(\simeq 25–32\,\)</span>K. The latter trend differs from the prediction of the popular RAdiative Torques (RATs) alignment theory, which implies a monotonic increase of the polarization fraction with the grain temperature. The DustPOL-py results could successfully reproduce both the rising and declining trends of the observational data. Moreover, we show that the alignment of only silicate grains or a mixture of silicate–carbon grains within a composite structure can reproduce the observational trends.
+<figure style="text-align:center;" class="figure">
+<img src="figures/SOFIA_Oph.pdf" alt="Descriptive Text" style="width:80%;" class="figure-img">
+<figcaption>
+Figure 2: DustPOL-py vs.&nbsp;SOFIA/HAWC+ observations, led by Dr.&nbsp;Le N. Tram. For more details, please have a look at this <a href="https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract">article</a>
+</figcaption>
+</figure>
 </section>
-<section id="features" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="features"><span class="header-section-number">4</span> Features</h2>
-<p>– Current version is designed to predict the polarization spectrum for starlight and thermal</p>
-<p>– diffuse ISM</p>
-<p>– molecular clouds and star-forming regions</p>
-<p>– isolated dense cores (starless cores)</p>
+<section id="orion-molecular-cloud" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="orion-molecular-cloud"><span class="header-section-number">4</span> Orion Molecular Cloud</h2>
+<p>Located at a distance of 388<span class="math inline">\(\pm 5\,\)</span>pc, the Orion Nebula is the nearest high-mass star formation region. OMC-1 or Orion A is located behind an H II region ionized by O-B stars from the Trapezium cluster. OMC-1 consists of two principal clumps, the northern Becklin– Neugebauer–Kleinmann–Low (BN-KL) clump and the southern Orion S clump. BN-KL hosts an extremely explosive molecular outflow with a wide opening angle and multiple ejecta.</p>
+<section id="orion-bn-kl-p-t_rm-dust-relations-for-single-wavelengths" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="orion-bn-kl-p-t_rm-dust-relations-for-single-wavelengths"><span class="header-section-number">4.1</span> Orion BN-KL: <span class="math inline">\(p-T_{\rm dust}\)</span> relations for single wavelengths</h3>
+We use thermal dust polarization data observed toward the Orion BN-KL by SOFIA/HAWC+ at 89, 154 and 214<span class="math inline">\(\,\mu\)</span>m and JCMT/POL-2 at 850<span class="math inline">\(\,\mu\)</span>m. Figure 3 showed that DustPOL-py could reproduce observational trends of <span class="math inline">\(p(\%)-T_{\rm dust}\)</span>.
+<figure style="text-align:center;" class="figure">
+<img src="figures/Orion_BNKL.pdf" alt="Descriptive Text" style="width:80%;" class="figure-img">
+<figcaption>
+Figure 3: DustPOL-py vs.&nbsp;SOFIA/HAWC+ and JCMT/POL-2 observations, led by Dr.&nbsp;Le N. Tram. For more details, please have a look at this <a href="https://ui.adsabs.harvard.edu/abs/2021ApJ...908..159T/abstract">article</a>
+</figcaption>
+</figure>
 </section>
-<section id="upnext" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="upnext"><span class="header-section-number">5</span> Upnext</h2>
-<p>– Globules/Pillars</p>
-<p>– Protostars</p>
-<p>– Protoplanetary disks</p>
+<section id="omc-1-pixel-to-pixel-at-a-single-wavelength" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="omc-1-pixel-to-pixel-at-a-single-wavelength"><span class="header-section-number">4.2</span> OMC-1: pixel-to-pixel at a single wavelength</h3>
+<figure style="text-align:center;" class="figure">
+<img src="figures/Orion_1_p2p.pdf" alt="Descriptive Text" style="width:80%;" class="figure-img">
+<figcaption>
+Figure 3: DustPOL-py vs.&nbsp;SOFIA/HAWC+ observations at 214<span class="math inline">\(\,\mu\)</span>m, led by Dr.&nbsp;Le N. Tram. For more details, please have a look at this <a href="https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract">article</a>
+</figcaption>
+</figure>
 </section>
-<section id="history" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="history"><span class="header-section-number">6</span> History:</h2>
-<p>2024 : Tram added the modulation for starless core and embedded high-performance-computation techniques</p>
-<p>2024 : Tram re-structured the DustPOL-py infractructure to python class object (modulation)</p>
-<p>2024 : Tram implemented a two-phase model: cold and warm dust layers along the LOS</p>
-<p>2023 : Tram optimized and improved the code to work with maximum grain size lower than the disruption size</p>
-<p>2022 : Thiem implemented MRAT in align.py to account for iron inclusions</p>
-<p>2020 : Tram improved Hyeseung’s code</p>
-<p>2019 : Hyeseung modified the Dustpol Code from Thiem, adding RATD (maximum grain size is higher than the disruption size)</p>
-</section>
-<section id="dependencies" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="dependencies"><span class="header-section-number">7</span> Dependencies</h2>
-<p>1- Python 3</p>
-<p>2- Numpy</p>
-<p>3- Matplotlib</p>
-<p>4- Scipy</p>
-<p>5- Astropy</p>
-<p>6- Joblib for parallelization (installation: https://joblib.readthedocs.io/en/latest/installing.html)</p>
-<p>7- Concurrency for parallelization</p>
-</section>
-<section id="bugs" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="bugs"><span class="header-section-number">8</span> Bugs</h2>
-<p>Please reach out to us at <a href="mailto:nle@strw.leidenuniv.nl" class="email">nle@strw.leidenuniv.nl</a> or <a href="mailto:nle@mpifr-bonn.mpg.de" class="email">nle@mpifr-bonn.mpg.de</a></p>
-</section>
-<section id="more-information-please-read" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="more-information-please-read"><span class="header-section-number">9</span> More information, please read</h2>
-<p>1- Lee et al.&nbsp;(2020) <a href="https://ui.adsabs.harvard.edu/abs/2020ApJ...896...44L" class="uri">https://ui.adsabs.harvard.edu/abs/2020ApJ...896...44L</a></p>
-<p>2- Tram et al.&nbsp;(2021) <a href="https://ui.adsabs.harvard.edu/abs/2021ApJ...906..115T" class="uri">https://ui.adsabs.harvard.edu/abs/2021ApJ...906..115T</a></p>
-<p>3- Tram et al.&nbsp;(2024) <a href="https://www.aanda.org/articles/aa/pdf/2024/09/aa50127-24.pdf" class="uri">https://www.aanda.org/articles/aa/pdf/2024/09/aa50127-24.pdf</a></p>
-</section>
-<section id="citations" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="citations"><span class="header-section-number">10</span> Citations</h2>
-<p>If you use this code for your scientific projects, please cite</p>
-<p>{Lee}, H., {Hoang}, T., {Le}, N., &amp; {Cho}, J. 2020, , 896, 44, </p>
-<p>{Tram}, L.~N., {Hoang}, T., {Lee}, H., {et al.} 2021{}, , 906, 115, </p>
-<p>{Tram}, L.~N., {Hoang}, T., {Wiesemeyer}, H., {et al.} 2024, , 689, A290, </p>
+<section id="omc-1-polarization-spectrum" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="omc-1-polarization-spectrum"><span class="header-section-number">4.3</span> OMC-1: polarization spectrum</h3>
+<figure style="text-align:center;" class="figure">
+<img src="figures/OMC-1-pol-spec-slope.pdf" alt="Descriptive Text" style="width:35%;" class="figure-img"> <img src="figures/OMC-1-pol_spec_2layer.pdf" alt="Descriptive Text" style="width:60%;" class="figure-img">
+<figcaption>
+Figure 3: DustPOL-py vs.&nbsp;polarisation spectrum (SOFIA/HAWC+ and JCMT/POL-2 observations), led by Dr.&nbsp;Le N. Tram. Different panels are for different line of sights shown on the left figure. For more details, please have a look at this <a href="https://ui.adsabs.harvard.edu/abs/2024A%26A...689A.290T/abstract">article</a>
+</figcaption>
+</figure>
+<!-- <figure> -->
+<!--   <img src="figures/SOFIA_Oph.pdf" alt="Descriptive Text"> -->
+<!--   <figcaption>Figure 2: Series of ```B-fields And dust in interstelLar fiLAments using Dust POLarization (BALLAD-POL)```, led by Ms. Nguyen B. Ngoc. For more details, please have a look at  this [article](https://ui.adsabs.harvard.edu/abs/2024ApJ...974..118N/abstract)</figcaption> -->
+<!-- </figure> -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

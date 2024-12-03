@@ -9,12 +9,45 @@ website:
         text: Home
       - href: Docs.qmd
         text: Docs
+      - href: Tutorials.qmd
+        text: Tutorials
+      - href: Example_scripts.qmd
+        text: Examples/scripts
+      - href: Applications.qmd
+        text: Applications
+      - icon: "fas fa-external-link-alt"
+        href: https://dustpol-py.streamlit.app
+        text: "Web-interface"
+        target: "_blank"
+      - icon: github
+        href: https://github.com/lengoctram/DustPOL-py
+        text: "Source code"
 
+    right:
+      - icon: github
+        href: https://github.com/lengoctram/DustPOL-py
+        text: "GitHub"
+
+jupyter: python3
+  
 format:
   html:
+    # grid:
+      # margin-width: 300px
+      # body-width: 800px
+      # sidebar-width: 0px
+    page-layout: full
     theme: cosmo
+    code-fold: false
+    code-line-numbers: true
     css: styles.css
     toc: true
-
+    sidebar: false
+    number-sections: true
+    number-depth: 4
+    equation:
+    numbering: true
 editor: visual
 
+# execute:
+#   cache: true
