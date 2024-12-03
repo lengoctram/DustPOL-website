@@ -354,7 +354,7 @@ window.Quarto = {
 </div>
 <p>DustPOL-py returns output for futher analysis. There are many ways to plot and analyse the output fiels in the ascii format. DustPOL-py provide a simple build-in module, namely <em>analysis</em> for plotting the results.</p>
 <p>This is an example how to use <em>analysis</em> to plot the polarization spectra along different LOS.</p>
-<div id="38a816ad" class="cell" data-execution_count="1">
+<div id="fdaa0b37" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="im">from</span> DustPOL_py <span class="im">import</span> analysis</span>
@@ -375,14 +375,14 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Example_scripts_files/figure-html/cell-2-output-1.png" width="763" height="297" class="figure-img"></p>
+<p><img src="Example_scripts_files/figure-html/cell-2-output-1.png" width="770" height="300" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Example_scripts_files/figure-html/cell-2-output-2.png" width="738" height="297" class="figure-img"></p>
+<p><img src="Example_scripts_files/figure-html/cell-2-output-2.png" width="762" height="300" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -425,7 +425,7 @@ window.Quarto = {
 <span id="cb5-7"><a href="#cb5-7"></a>exe.isoCloud_pos()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>On the basis, this module returns a single file containing data along all LOS through the center to the edge. This is an example to plot the polarization spectra for some preferable <span class="math inline">\(A_{\rm V}\)</span></p>
-<div id="8d70f494" class="cell" data-execution_count="2">
+<div id="2f9956e5" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="im">from</span> DustPOL_py <span class="im">import</span> analysis</span>
 <span id="cb6-3"><a href="#cb6-3"></a></span>
@@ -445,20 +445,20 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Example_scripts_files/figure-html/cell-3-output-1.png" width="763" height="297" class="figure-img"></p>
+<p><img src="Example_scripts_files/figure-html/cell-3-output-1.png" width="770" height="300" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Example_scripts_files/figure-html/cell-3-output-2.png" width="750" height="297" class="figure-img"></p>
+<p><img src="Example_scripts_files/figure-html/cell-3-output-2.png" width="755" height="300" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This is an example to plot the <span class="math inline">\(\lambda_{\rm max}\)</span> at the peak starlight polarization as a function of <span class="math inline">\(A_{\rm V}\)</span></p>
-<div id="2f0887d5" class="cell" data-execution_count="3">
+<div id="c0cbc511" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> DustPOL_py <span class="im">import</span> analysis</span>
 <span id="cb7-3"><a href="#cb7-3"></a></span>
@@ -472,7 +472,7 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Example_scripts_files/figure-html/cell-4-output-1.png" width="756" height="297" class="figure-img"></p>
+<p><img src="Example_scripts_files/figure-html/cell-4-output-1.png" width="762" height="300" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -484,7 +484,7 @@ window.Quarto = {
 <p><strong>starlight polarization</strong></p>
 </div>
 <p>This is an example to compare the <span class="math inline">\(p_{\rm ext}/A_{\rm V}\)</span> vs.&nbsp;<span class="math inline">\(A_{\rm V}\)</span> for <code>amax=0.25,0.3,0.5</code> micron at 0.65<span class="math inline">\(\,\mu\)</span>m. If we want to show the value of <span class="math inline">\(A_{\rm V}\)</span> above which the <span class="math inline">\(p_{\rm ext}/A_{\rm V}\)</span> drops with a slope of <span class="math inline">\(-1\)</span>, please set <code>show_break=True</code>, and <code>get_info=True</code> to get the slopes’ values</p>
-<div id="595eaf49" class="cell" data-execution_count="4">
+<div id="e5506447" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="im">from</span> DustPOL_py <span class="im">import</span> analysis</span>
@@ -520,19 +520,19 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------Fitting information----------------
 Fitting function:  1
-0.755629645094628 - 0.127377355685438*x
+0.755629645383476 - 0.127377358540819*x
 Fitting function:  2
-1.55606373980723 - 1.10797287467038*x
+1.55606374163488 - 1.10797287584798*x
 --------------Fitting information----------------
 Fitting function:  1
-0.732253725128198 - 0.127422349688661*x
+0.732253725464658 - 0.127422351617074*x
 Fitting function:  2
-1.60525338808295 - 1.09879891647747*x
+1.6052533895017 - 1.09879891736522*x
 --------------Fitting information----------------
 Fitting function:  1
-0.663190916178191 - 0.140534672195393*x
+0.663190916498778 - 0.140534673644743*x
 Fitting function:  2
-1.54022416549613 - 1.05678547822175*x</code></pre>
+1.54022416691999 - 1.05678547910654*x</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -544,19 +544,19 @@ Fitting function:  2
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------Fitting information----------------
 Fitting function:  1
--0.114254086862011*x - 0.0258129107891026
+-0.114254089388783*x - 0.0258129104488481
 Fitting function:  2
-0.835560119453843 - 1.11676957675652*x
+0.835560121266196 - 1.11676957791942*x
 --------------Fitting information----------------
 Fitting function:  1
-0.0724294917175231 - 0.106223693750491*x
+0.0724294920178201 - 0.106223694963648*x
 Fitting function:  2
-1.079311814325 - 1.12309139483829*x
+1.07931181562722 - 1.12309139564573*x
 --------------Fitting information----------------
 Fitting function:  1
-0.371513949129454 - 0.0839797640871031*x
+0.371513950120255 - 0.0839797664618789*x
 Fitting function:  2
-1.58319263423355 - 1.09952931272152*x</code></pre>
+1.58319264019005 - 1.09952931632782*x</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -571,7 +571,7 @@ Fitting function:  2
 <p><strong>Thermal dust polarization</strong></p>
 </div>
 <p>This is an example to compare the <span class="math inline">\(p_{\rm em}\)</span> vs.&nbsp;<span class="math inline">\(A_{\rm V}\)</span> for <code>amax=0.25,0.3,0.5</code> micron at 850<span class="math inline">\(\,\mu\)</span>m. Similarly to the starlight polarization, set <code>show_break=True</code> to identify when <span class="math inline">\(p_{\rm em}\)</span> drops with a slope of <span class="math inline">\(-1\)</span>. Similarly, please set <code>show_break=True</code>, and <code>get_info=True</code> to get the slopes’ values</p>
-<div id="a7b0bc6e" class="cell" data-execution_count="5">
+<div id="23c510ad" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="im">from</span> DustPOL_py <span class="im">import</span> analysis</span>
@@ -597,25 +597,25 @@ Fitting function:  2
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------Fitting information----------------
 Fitting function:  1
-1.03478264754118 - 0.0637560807564429*x
+1.03478266325705 - 0.0637559017547389*x
 Fitting function:  2
-1.15188156482276 - 0.363544706884766*x
+1.15188160337447 - 0.363544884803161*x
 Fitting function:  3
-1.59022399237287 - 0.895890620799238*x
+1.59022419480387 - 0.895890755850797*x
 --------------Fitting information----------------
 Fitting function:  1
-1.08302781235704 - 0.0647883647770827*x
+1.0830278124027 - 0.0647883468132064*x
 Fitting function:  2
-1.23616358498174 - 0.368285115164312*x
+1.23616354446145 - 0.368285063681195*x
 Fitting function:  3
-1.73083789953057 - 0.888738635028834*x
+1.730837898394 - 0.888738634309728*x
 --------------Fitting information----------------
 Fitting function:  1
-1.18349929431518 - 0.0573175673387485*x
+1.18349929670071 - 0.0573175957329616*x
 Fitting function:  2
-1.36133278933298 - 0.329022149945756*x
+1.36133288665519 - 0.329022250015283*x
 Fitting function:  3
-1.98545808531011 - 0.862029946727807*x</code></pre>
+1.98545809472883 - 0.862029952350762*x</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -626,7 +626,7 @@ Fitting function:  3
 </div>
 </div>
 <p>This is an example to compare the <span class="math inline">\(p_{\rm em}\)</span> vs.&nbsp;<span class="math inline">\(I\)</span> for <code>amax=0.25,0.3,0.5</code> micron at 850<span class="math inline">\(\,\mu\)</span>m. Similarly to the starlight polarization, set <code>show_break=True</code> to identify when <span class="math inline">\(p_{\rm em}\)</span> drops with a slope of <span class="math inline">\(-1\)</span></p>
-<div id="495931cb" class="cell" data-execution_count="6">
+<div id="b124b66e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="im">from</span> DustPOL_py <span class="im">import</span> analysis</span>
@@ -652,19 +652,19 @@ Fitting function:  3
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------Fitting information----------------
 Fitting function:  1
-0.812106379955379 - 0.143508489926172*x
+0.812106381122218 - 0.143508489125787*x
 Fitting function:  2
-0.0299006591006813 - 1.07555460998751*x
+0.0299006593492451 - 1.07555460897357*x
 --------------Fitting information----------------
 Fitting function:  1
-0.867018600825785 - 0.139634518506927*x
+0.867018600580613 - 0.139634518679176*x
 Fitting function:  2
-0.145328481905508 - 1.0754183695506*x
+0.145328481836346 - 1.07541836987421*x
 --------------Fitting information----------------
 Fitting function:  1
-1.01698885338511 - 0.109587826130318*x
+1.01698884908505 - 0.109587829299367*x
 Fitting function:  2
-0.446767305908103 - 1.01615034975752*x</code></pre>
+0.446767304349431 - 1.01615035998849*x</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
