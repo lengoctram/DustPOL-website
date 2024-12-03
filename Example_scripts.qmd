@@ -13,7 +13,7 @@ The input parameters (e.g. `ngas`, `U` or `Tdust`) can be adopted from observati
 Let's take an example with a specific set of the physical parameters as in the ‘input_template.dustpol'.
 
 The gas volume density is followed \begin{equation}
-    n_{\rm gas} = n0 ~~~{\rm for}~~~ r<r_{\rm flat}, ~~~{\rm while}~~~ n_{\rm gas}=n0\times \left(\frac{r_{\rm flat}}{r}\right)^{-\alpha}
+    n_{\rm gas} = n0 ~~~{\rm for}~~~ r<r_{\rm flat}, ~~~{\rm while}~~~ n_{\rm gas}=n0\times \left(\frac{r_{\rm flat}}{r}\right)^{-p}
 \end{equation}
 
 The gas column density ($N_{\rm gas}$) integrated from the center to the position $r$ in the envelope along the radial distance, and the corresponding visual extinction ($A^{\rm outward}_{V}$) are \begin{equation}
@@ -26,8 +26,8 @@ The gas column density ($N_{\rm gas}$) integrated from the center to the positio
     A^{\rm ext}_{\rm V} &= A^{\rm outward}_{\rm V}(r\gg r_{\rm flat}) - A^{\rm outward}_{\rm V}(r) \\
     &= 10.3\left(\frac{n_{0}}{10^{8}\,\rm cm^{-3}}\right)\left(\frac{r_{\rm flat}}{10\,\rm au}\right)\left(\frac{R_{\rm V}}{4}\right) \times \left\{
     \begin{array}{l l}
-        \left(\frac{\alpha}{\alpha-1} - \frac{r}{r_{\rm flat}}\right) & \quad {\rm ~for~} r\le r_{\rm flat},\\
-        \frac{1}{\alpha-1}\left(\frac{r}{r_{\rm flat}}\right)^{1-\alpha} & \quad {\rm ~for~} r>r_{\rm flat},
+        \left(\frac{p}{p-1} - \frac{r}{r_{\rm flat}}\right) & \quad {\rm ~for~} r\le r_{\rm flat},\\
+        \frac{1}{p-1}\left(\frac{r}{r_{\rm flat}}\right)^{1-p} & \quad {\rm ~for~} r>r_{\rm flat},
     \end{array}\right.
     \end{split}
 \end{equation} It is worth noticing that this visual extinction differs from the line of sight $A_{\rm V}$.
@@ -46,7 +46,7 @@ In the dense and cold environments like starless cores, gas and dust are in ther
 
 ### Parameter adjustments
 
-To profile this cloud, there are four main input physical parameters that must be corrected: `n0, rflat,rout and $\alpha$`. To make a proper adjustment, we follows these steps
+To profile this cloud, there are four main input physical parameters that must be corrected: `n0, rflat,rout and p`. To make a proper adjustment, we follow these steps
 
 ```         
 -- we vary these parameters from the input file
