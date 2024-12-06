@@ -9,8 +9,8 @@ ratd           False    !True: turn on RAT-D
 !--------------------------------------------------------------------------------------------
 p              2        !power-index for profiling gas volume density (n~r^-p)
 rin            1700.    ![au]: inner radius
-rout           1.248e5  ![au]: outer radius #624e6 (test Pipe-109)
-rflat          9000.    ![au]: flat radius (r<r0: n=n0=const.) #17000 (test Pipe-109)
+rout           1.248e5  ![au]: outer radius
+rflat          9000.    ![au]: flat radius (r<r0: n=n0=const.)
                         !                   r>r0: n~r^{-p}
 nsample        70       !number of points sampling from rin -> rout                        
 !--------------------------------------------------------------------------------------------
