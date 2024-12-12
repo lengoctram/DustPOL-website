@@ -570,7 +570,7 @@ Figure 3: Coordinate system of the isolated cloud on the {}-plane with the <span
 </section>
 <section id="run-a-2d-model" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="run-a-2d-model"><span class="header-section-number">5</span> Run a 2D model</h2>
-<p>For an isolated spherical cloud/core illustrated in Figure 3, one can model the degree of dust polarization on the plane-of-sky by varying the values of <span class="math inline">\(r_{0}\)</span> from center (<span class="math inline">\(0\)</span>) to the edge of the cloud/core (<span class="math inline">\(r_{\rm out}\)</span>). Typically, this task time consumption, thust we adopt the <code>concurrency</code> technique in python for parallelization. The setup is adjustable in the physical parameters input file. In DustPOL-py, this sight line coordinate is automically varied within the setup of the model, so we can just call this module</p>
+<p>For an isolated spherical cloud/core illustrated in Figure 3, one can model the degree of dust polarization on the plane-of-sky by varying the values of <span class="math inline">\(r_{0}\)</span> from center (<span class="math inline">\(0\)</span>) to the edge of the cloud/core (<span class="math inline">\(r_{\rm out}\)</span>). Typically, this task is time-consuming; thus we adopt the <code>concurrency</code> technique in python for parallelization. The setup is adjustable in the physical parameters input file. In DustPOL-py, this sight line coordinate is automically varied within the setup of the model, so we can just call this module</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>isoCloud_pos</strong></pre>
